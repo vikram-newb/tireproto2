@@ -1,0 +1,8 @@
+.btnflex{
+    display:flex;
+    justify-content:flex-end;
+    margin:20px;
+}
+.brandcard{
+    margin:auto 15px;    
+}

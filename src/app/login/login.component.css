@@ -1,0 +1,17 @@
+.Logheader{
+    margin-bottom:30px;
+    border:0px;
+    
+}
+.LoginCard{
+    text-align:center;
+    width:286px;
+    height:332px;
+    padding: 32px; 
+    position:relative;
+    left:38%; 
+}
+.formInput{
+    margin: 16px 0px 0px !important;
+    width: 100%;
+}

@@ -1,0 +1,13 @@
+table {
+    width: 100%;
+  }
+.head2{
+    margin-top:15px;
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
+
+}
+.slodeTog{
+    margin-left:15px;
+}

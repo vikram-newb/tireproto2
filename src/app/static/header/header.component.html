@@ -1,0 +1,43 @@
+<div style="height: 100vh;">
+        <mat-toolbar color="primary">
+          <mat-toolbar-row style="display:grid;" >
+            <div class="headFlex">
+                <div><span>
+                    <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" >
+                         <mat-icon>menu</mat-icon>
+                    </button>
+                    </span>
+                </div>
+                <div>
+                    <span>
+                    Responsive Navigation
+                    </span>
+                </div>
+                <div>
+                    <span><a href="#" mat-button><mat-icon>power_settings_new</mat-icon></a>
+                    </span>
+                </div>
+            </div>
+          </mat-toolbar-row>
+        </mat-toolbar>
+      
+        <mat-sidenav-container fxFlexFill hasBackdrop="false" style="width:20%;">
+          <mat-sidenav #sidenav mode="push">
+            <mat-nav-list>
+              <a  [routerLink] = "['dashboard']" mat-list-item ><mat-icon>dashboard</mat-icon>Dashboard</a>
+              <a [routerLink] = "['brands']" mat-list-item ><mat-icon>format_bold</mat-icon>Brands</a>
+              <a [routerLink] ="['sellers']" mat-list-item ><mat-icon>attach_money</mat-icon>Sellers</a>
+              <a [routerLink] = "['alerts']" mat-list-item ><mat-icon>notifications_paused</mat-icon>Alerts</a>
+              <mat-divider></mat-divider>
+              
+            </mat-nav-list>
+          </mat-sidenav>
+          <mat-sidenav-content fxFlexFill>
+            <router-outlet></router-outlet>
+          </mat-sidenav-content>
+        </mat-sidenav-container>
+      </div>
+      
+      
+      
+      

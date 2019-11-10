@@ -1,0 +1,111 @@
+
+<mat-tab-group>
+        <mat-tab label="All">
+            <mat-card>
+                <mat-list role="list">
+                        <mat-list-item role="listitem">
+                            <div class="head_container">
+                                <div>
+                                    <span><mat-icon>import_export</mat-icon></span>
+                                    <span>&nbsp; MPN No. &nbsp;</span>
+                                    <span>&nbsp;(Brand Name) &nbsp;</span>
+                                    <span>&nbsp;Seller Name &nbsp;</span>
+                                </div>
+                                
+                                <div>
+                                    <span>Old Price</span>
+                                    <span><mat-icon>arrow_forwardios</mat-icon></span>
+                                    <span>New Price</span>
+                                    <mat-divider></mat-divider>
+                                </div>
+                            </div>
+
+                        </mat-list-item>
+                        <mat-list-item role="listitem" *ngFor="let entry of allAlert">
+                                <div class="head_container">
+                                    <div>
+                                        <span><mat-icon></mat-icon></span>
+                                        <span>&nbsp;{{ entry.mpn }}&nbsp;</span>
+                                        <span>&nbsp;({{ entry.brand }})&nbsp;</span>
+                                        <span>&nbsp;{{ entry.sellerName }}&nbsp;</span>
+                                    </div>
+                                    <div>
+                                        <span>{{entry.oldPrice}}</span>
+                                        <mat-icon>arrow_forwardios</mat-icon>
+                                        <span>{{entry.newPrice}}</span>
+                                        <mat-divider></mat-divider>
+                                    </div>
+                                </div>
+                            </mat-list-item>
+                </mat-list>
+                </mat-card>
+        </mat-tab>
+        <!--for another tab UNREAD-->
+        <mat-tab label="Unread">
+                <mat-card>
+                <mat-list role="list">
+                        <mat-list-item role="listitem">
+                            <div class="head_container">
+                                <div>
+                                    <span><mat-icon>import_export</mat-icon></span>
+                                    <span>&nbsp; MPN No. &nbsp;</span>
+                                    <span>(Brand Name) &nbsp;</span>
+                                    <span>Seller Name &nbsp;</span>
+                                </div>
+                                
+                                <div>
+                                    <span>Old Price</span>
+                                    <span><mat-icon>arrow_forwardios</mat-icon></span>
+                                    <span>New Price</span>
+                                </div>
+                            </div>
+
+                        </mat-list-item>
+                        <mat-list-item role="listitem" *ngFor="let entry of priceAlert">
+                            <div class="head_container">
+                                <div>
+                                    <span><mat-icon></mat-icon></span>
+                                    <span>&nbsp;{{ entry.mpn }}&nbsp;</span>
+                                    <span>&nbsp;{{ entry.brand }}&nbsp;</span>
+                                    <span>&nbsp;{{ entry.sellerName }}&nbsp;</span>
+                                </div>
+                                <div>
+                                    <span>{{entry.oldPrice}}</span>
+                                    <span><mat-icon>arrow_forwardios</mat-icon></span>
+                                    <span>{{entry.newPrice}}</span>
+                                </div>
+                            </div>
+                        </mat-list-item>
+                        
+                </mat-list>
+            </mat-card>
+        </mat-tab>
+        <!--For Another Tab Read-->
+        <mat-tab label="Read">
+                <mat-card>
+                <mat-list role="list">
+                        <mat-list-item role="listitem">
+                            <div class="head_container">
+                                <div>
+                                    <span><mat-icon>import_export</mat-icon></span>
+                                    <span>&nbsp; MPN No. &nbsp;</span>
+                                    <span>(Brand Name) &nbsp;</span>
+                                    <span>Seller Name &nbsp;</span>
+                                </div>
+                                
+                                <div>
+                                    <span>Old Price</span>
+                                    <span><mat-icon>arrow_forwardios</mat-icon></span>
+                                    <span>New Price</span>
+                                </div>
+                            </div>
+
+                        </mat-list-item>
+                        <mat-list-item role="listitem"></mat-list-item>
+                        
+                </mat-list>
+            </mat-card>
+        </mat-tab>
+</mat-tab-group>
+
+      
