@@ -3,3 +3,6 @@
     flex-direction: row;
     justify-content: space-between;
 }
+mat-sidenav {
+    width: 240px;
+  }

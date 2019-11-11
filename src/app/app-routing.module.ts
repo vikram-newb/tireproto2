@@ -6,26 +6,38 @@ import { SellersComponent } from './pages/sellers/sellers.component';
 import { AlertsComponent } from './pages/alerts/alerts.component';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent} from './static/header/header.component';
+import { AuthGuard } from './auth.guard';
 const routes: Routes = [
   {
     path: '',
     component: LoginComponent
   },
-  { path: 'header',
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  { data: {title: 'Dashboard'},
+    path: 'header',
     component: HeaderComponent,
+    canActivate: [AuthGuard],
     children: [
-      { path: 'dashboard',
+      {
+        data: {title: 'Dashboard'},
+        path: 'dashboard',
         component: DashboardComponent
       },
       {
+       data: {title: 'Brands'},
        path: 'brands',
-        component: BrandsComponent
+       component: BrandsComponent
       },
       {
+      data: {title: 'Sellers'},
       path: 'sellers',
       component: SellersComponent
       },
       {
+       data: {title: 'Alerts'},
        path: 'alerts',
        component: AlertsComponent
       }

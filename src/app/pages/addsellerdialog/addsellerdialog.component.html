@@ -1,0 +1,16 @@
+<form [formGroup]="form" (ngSubmit)="submit(form)">
+   <h1 mat-dialog-title>Add Seller </h1>
+   <mat-dialog-content>
+       <mat-form-field>
+           <input matInput formControlName="seller" placeholder="Name*">
+       </mat-form-field>
+       <mat-form-field>
+           <input matInput formControlName="StoreLink" placeholder= "Store Link (optional)">
+       </mat-form-field>
+       <mat-dialog-actions>
+           <div style="display: flex; flex-direction: row; justify-content: flex-end;">
+           <button mat-button-type="submit" mat-raised-button color="primary" style="margin-right: 15px;;">Add</button>
+           <button mat-raised-button mat-dialog-close>Cancel</button>
+           </div>
+       </mat-dialog-actions>
+   </mat-dialog-content> 

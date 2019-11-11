@@ -33,6 +33,17 @@ export class ApiService {
     //   catchError(this.handleError('loginUser', [])));
     }
 
+    // getAllBrands() {
+    //   const localUrl = ` "api/brands/?auth-email="+ ${localStorage.getItem(email)} + "auth-token=" + $`;
+    //   return this.http.get(localUrl);
+    // }
+
+
+    loggedIn() {
+      return !!localStorage.getItem('token');
+    }
+
+
    private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);

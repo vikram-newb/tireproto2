@@ -17,6 +17,8 @@ import { MatDialogModule} from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material';
 import { HeaderComponent } from './static/header/header.component';
 import { Dial1Component } from './pages/dial1/dial1.component';
+import { AddsellerdialogComponent } from './pages/addsellerdialog/addsellerdialog.component';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { Dial1Component } from './pages/dial1/dial1.component';
     AlertsComponent,
     HeaderComponent,
     Dial1Component,
+    AddsellerdialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,8 +44,10 @@ import { Dial1Component } from './pages/dial1/dial1.component';
     MatFormFieldModule,
     MatDialogModule,
   ],
-  entryComponents: [Dial1Component],
-  providers: [],
+  entryComponents: [Dial1Component,
+    AddsellerdialogComponent,
+  ],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

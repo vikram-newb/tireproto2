@@ -125,7 +125,7 @@ export class AlertsComponent implements OnInit {
         oldPrice: '2530',
         newPrice: '2990',
       },
-    ]
+    ];
   }
 
 }

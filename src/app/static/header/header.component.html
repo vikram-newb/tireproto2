@@ -10,7 +10,7 @@
                 </div>
                 <div>
                     <span>
-                    Responsive Navigation
+                    {{pageTitle}}
                     </span>
                 </div>
                 <div>
@@ -21,18 +21,18 @@
           </mat-toolbar-row>
         </mat-toolbar>
       
-        <mat-sidenav-container fxFlexFill hasBackdrop="false" style="width:20%;">
-          <mat-sidenav #sidenav mode="push">
-            <mat-nav-list>
-              <a  [routerLink] = "['dashboard']" mat-list-item ><mat-icon>dashboard</mat-icon>Dashboard</a>
-              <a [routerLink] = "['brands']" mat-list-item ><mat-icon>format_bold</mat-icon>Brands</a>
-              <a [routerLink] ="['sellers']" mat-list-item ><mat-icon>attach_money</mat-icon>Sellers</a>
-              <a [routerLink] = "['alerts']" mat-list-item ><mat-icon>notifications_paused</mat-icon>Alerts</a>
+        <mat-sidenav-container fxFlexFill hasBackdrop="false" style="width:240px;">
+          <mat-sidenav #sidenav mode="push" >
+            <mat-nav-list >
+              <a  [routerLink] = "['dashboard']" mat-list-item ><mat-icon style="margin-right: 32px;">dashboard</mat-icon>Dashboard</a>
+              <a [routerLink] = "['brands']" mat-list-item ><mat-icon style="margin-right: 32px;">format_bold</mat-icon>Brands</a>
+              <a [routerLink] ="['sellers']" mat-list-item ><mat-icon style="margin-right: 32px;">attach_money</mat-icon>Sellers</a>
+              <a [routerLink] = "['alerts']" mat-list-item ><mat-icon style="margin-right: 32px;">notifications_paused</mat-icon>Alerts</a>
               <mat-divider></mat-divider>
               
             </mat-nav-list>
           </mat-sidenav>
-          <mat-sidenav-content fxFlexFill>
+          <mat-sidenav-content fxFlexFill fxFlex="90%">
             <router-outlet></router-outlet>
           </mat-sidenav-content>
         </mat-sidenav-container>
