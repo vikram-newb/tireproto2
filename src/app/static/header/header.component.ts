@@ -9,7 +9,8 @@ import { filter, map, mergeMap } from 'rxjs/internal/operators';
 })
 export class HeaderComponent implements OnInit {
   pageTitle: string;
-
+  toggleState: any;
+ 
   constructor(private router: Router, private activeRoute: ActivatedRoute) { }
 
   private setTitleFromRouteData(routeData) {

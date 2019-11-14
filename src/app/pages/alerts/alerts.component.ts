@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import All_data from 'src/assets/data/alerts_all.json';
+import Read_data from 'src/assets/data/alerts_read.json';
+import Unread_data from 'src/assets/data/alerts_unread.json';
 @Component({
   selector: 'app-alerts',
   templateUrl: './alerts.component.html',
@@ -7,126 +9,107 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class AlertsComponent implements OnInit {
-  thundererAlerts: any;
-  lionAlerts: any;
-  priceAlert: any;
-  allAlert: any;
+  // thundererAlerts: any;
+  // lionAlerts: any;
+  // priceAlert: any;
+  // allAlert: any;
+
+
+  dif: any;
+  dif2: any;
+  public All: {id:string, skuId: string, competitorLink: object,  competitorId: number, oldPrice: number, newPrice: number }[] = All_data.data;
+  public Read: {id:string, skuId: string, competitorLink: object, competitorId: number, oldPrice: number, newPrice: number }[] = Read_data.data;
+  public Unread: {id:string, skuId: string, competitorLink: object, competitorId: number, oldPrice: number, newPrice: number }[] = Unread_data.data;
 
   constructor() {
-    // this.thundererAlerts = [{
-    //   mpn: 'TH2300',
-    //   productname: '33X12.50R17LT',
-    //   cost: '127.62',
-    //   quantity: '1',
-    //   wheelsin: '520',
-    //   wheelsout: '1361'
-    // },
-    // {
-    //   mpn: 'TH2300',
-    //   productname: '33X12.50R17LT',
-    //   cost: '127.62',
-    //   quantity: '1',
-    //   wheelsin: '520',
-    //   wheelsout: '1361'
-    // },
-    //  {
-    //   mpn: 'TH2300',
-    //   productname: '33X12.50R17LT',
-    //   cost: '127.62',
-    //   quantity: '1',
-    //   wheelsin: '520',
-    //   wheelsout: '1361'
-    // },
-    //  {
-    //   mpn: 'TH2300',
-    //   productname: '33X12.50R17LT',
-    //   cost: '127.62',
-    //   quantity: '1',
-    //   wheelsin: '520',
-    //   wheelsout: '1361'
-    //  },
-    //  ];
-    // this.lionAlerts = [{
-    //   mpn: 'LHS32030040II',
-    //   productname: '275/30ZR20 LIONHART LH-THREE II 97W XL	',
-    //   cost: '127.62',
-    //   quantity: '1',
-    //   wheelsin: '520',
-    //   wheelsout: '1361'
-    // }, {
-    //   mpn: 'TH2300',
-    //   productname: '33X12.50R17LT',
-    //   cost: '127.62',
-    //   quantity: '1',
-    //   wheelsin: '520',
-    //   wheelsout: '1361'
-    // }, {
-    //   mpn: 'TH2300',
-    //   productname: '33X12.50R17LT',
-    //   cost: '127.62',
-    //   quantity: '1',
-    //   wheelsin: '520',
-    //   wheelsout: '1361'
-    // }];
+    
    }
   ngOnInit() {
-    this.priceAlert = [{
-      mpn : 'TH2300',
-      brand : 'Berserk',
-      sellerName: 'kentaro Miura',
-      oldPrice: '2530',
-      newPrice: '3405',
-    }, {
-      mpn : 'TH2300',
-      brand : 'Stardust',
-      sellerName: 'Araki',
-      oldPrice: '2530',
-      newPrice: '2990',
-    }, {
-      mpn : 'TH2300',
-      brand : '21st Century Boys',
-      sellerName: 'Naoki Urasava',
-      oldPrice: '1566',
-      newPrice: '9876',
-    }];
-    this.allAlert = [
-      {
-        mpn : 'TH2300',
-        brand : 'Stardust',
-        sellerName: 'Araki',
-        oldPrice: '2530',
-        newPrice: '2990',
-      },
-      {
-        mpn : 'TH2300',
-        brand : 'StoneOcean',
-        sellerName: 'Araki',
-        oldPrice: '5230',
-        newPrice: '2990',
-      },
-      {
-        mpn : 'TH2300',
-        brand : 'steelBallrun',
-        sellerName: 'Araki',
-        oldPrice: '2430',
-        newPrice: '4990',
-      },
-      {
-        mpn : 'TH2300',
-        brand : 'Bleach',
-        sellerName: 'kishimoto',
-        oldPrice: '2530',
-        newPrice: '2990',
-      },
-      {
-        mpn : 'TH2300',
-        brand : 'Hunter x Hunter',
-        sellerName: 'togashi',
-        oldPrice: '2530',
-        newPrice: '2990',
-      },
-    ];
+  
+    // this.priceAlert = [{
+    //   mpn : 'TH2300',
+    //   brand : 'Berserk',
+    //   sellerName: 'kentaro Miura',
+    //   oldPrice: '2530',
+    //   newPrice: '3405',
+    // }, {
+    //   mpn : 'TH2300',
+    //   brand : 'Stardust',
+    //   sellerName: 'Araki',
+    //   oldPrice: '2530',
+    //   newPrice: '2990',
+    // }, {
+    //   mpn : 'TH2300',
+    //   brand : '21st Century Boys',
+    //   sellerName: 'Naoki Urasava',
+    //   oldPrice: '1566',
+    //   newPrice: '9876',
+    // }];
+    // this.allAlert = [
+    //   {
+    //     mpn : 'TH2300',
+    //     brand : 'Stardust',
+    //     sellerName: 'Araki',
+    //     oldPrice: '2530',
+    //     newPrice: '2990',
+    //   },
+    //   {
+    //     mpn : 'TH2300',
+    //     brand : 'StoneOcean',
+    //     sellerName: 'Araki',
+    //     oldPrice: '5230',
+    //     newPrice: '2990',
+    //   },
+    //   {
+    //     mpn : 'TH2300',
+    //     brand : 'steelBallrun',
+    //     sellerName: 'Araki',
+    //     oldPrice: '2430',
+    //     newPrice: '4990',
+    //   },
+    //   {
+    //     mpn : 'TH2300',
+    //     brand : 'Bleach',
+    //     sellerName: 'kishimoto',
+    //     oldPrice: '2530',
+    //     newPrice: '2990',
+    //   },
+    //   {
+    //     mpn : 'TH2300',
+    //     brand : 'Hunter x Hunter',
+    //     sellerName: 'togashi',
+    //     oldPrice: '2530',
+    //     newPrice: '2990',
+    //   },
+    // ];
   }
+  // isAllGreater(entry): boolean {
+  //   this.dif = entry.newPrice - entry.oldPrice;
+  //   if (this.dif > 0) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
+
+  // brandName(competitorId:any){
+  //   if (this.All.competitorId === 12 || this.Read.competitorId === 12 || this.Unread.competitorId === 12){
+  //     return 'LionHart';
+  //   }
+  //     else {
+  //       return 'Thunderer Trac Grip';
+  //     }
+  //   }
+  
+  // sellerName() {
+  //   if (this.brandName(competitorId) === "LionHart"){
+  //     return 'IFixItZone';
+  //   }
+  //   else{
+  //     return 'Buy Wheels Today';
+  //   }
+
+  // }
 
 }
 

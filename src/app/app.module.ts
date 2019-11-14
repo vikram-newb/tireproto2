@@ -7,8 +7,9 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { MaterialModule } from './material/material.module';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { BrandsComponent } from './pages/brands/brands.component';
-import { SellersComponent } from './pages/sellers/sellers.component';
+// import { SellersComponent } from './pages/sellers/sellers.component';
+import { SellersModule } from './pages/sellers/sellers.module';
+import { BrandsModule } from './pages/brands/brands.module';
 import { AlertsComponent } from './pages/alerts/alerts.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './api.service';
@@ -25,8 +26,6 @@ import { AuthGuard } from './auth.guard';
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    BrandsComponent,
-    SellersComponent,
     AlertsComponent,
     HeaderComponent,
     Dial1Component,

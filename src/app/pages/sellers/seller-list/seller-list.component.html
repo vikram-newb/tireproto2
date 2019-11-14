@@ -1,0 +1,43 @@
+<div class="btnflex">
+    <button  mat-raised-button color="primary" style="margin-right:20px" >ADD SELLER PRODUCT</button>
+    <button  mat-raised-button color="primary" style="margin-right:20px">ADD SELLER</button>
+</div>
+
+<mat-card style="margin:auto 15px;" >
+    <mat-card-content>
+        <mat-nav-list>
+            <a mat-list-item *ngFor="let seller of Seller" [routerLink]="[seller.id]">
+                
+                    <div style="display:flex;flex:1;">
+                        <span matSuffix>{{seller.name}}</span>
+                    </div>
+                    <div><span><mat-icon>playlist_add</mat-icon></span>
+                        <span><mat-icon>list</mat-icon></span>
+                        <span><mat-icon>delete_forever</mat-icon></span>
+                        <span><mat-icon>next_week</mat-icon></span>
+                    </div>
+                                
+            </a>
+            <!-- <a mat-list-item [routerLink] = "[sellerdetail, seller.id]">
+                    <div class="head_container">
+                        <div style="display:flex;flex:1;">
+                            <span>IFixItZone</span>
+                        </div>
+                        <div><span><mat-icon>playlist_add</mat-icon></span>
+                            <span><mat-icon>list</mat-icon></span>
+                            <span><mat-icon>delete_forever</mat-icon></span>
+                            <span><mat-icon>next_week</mat-icon></span>
+                        </div>
+                    </div>                
+                </a> -->
+            
+            
+            
+        </mat-nav-list>
+    
+    </mat-card-content>
+</mat-card>
+
+
+
+    

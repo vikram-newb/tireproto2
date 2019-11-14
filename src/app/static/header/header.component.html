@@ -3,9 +3,12 @@
           <mat-toolbar-row style="display:grid;" >
             <div class="headFlex">
                 <div><span>
-                    <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" >
-                         <mat-icon>menu</mat-icon>
-                    </button>
+                    <!-- <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" > -->
+                        <button *ngIf="toggleState" (click)="sidenav.toggle() && toggleState = !toggleState" mat-button><mat-icon>menu</mat-icon></button> 
+                        <button *ngIf="!toggleState" (click)="sidenav.toggle() && toggleState = !toggleState" mat-button><mat-icon>more_vert</mat-icon></button>
+                         <!-- <mat-icon>menu</mat-icon> -->
+                         
+                    <!-- </button> -->
                     </span>
                 </div>
                 <div>
@@ -22,11 +25,11 @@
         </mat-toolbar>
       
         <mat-sidenav-container fxFlexFill hasBackdrop="false" style="width:240px;">
-          <mat-sidenav #sidenav mode="push" >
+          <mat-sidenav #sidenav mode="side" >
             <mat-nav-list >
-              <a  [routerLink] = "['dashboard']" mat-list-item ><mat-icon style="margin-right: 32px;">dashboard</mat-icon>Dashboard</a>
+              <a [routerLink] = "['dashboard']" mat-list-item ><mat-icon style="margin-right: 32px;">dashboard</mat-icon>Dashboard</a>
               <a [routerLink] = "['brands']" mat-list-item ><mat-icon style="margin-right: 32px;">format_bold</mat-icon>Brands</a>
-              <a [routerLink] ="['sellers']" mat-list-item ><mat-icon style="margin-right: 32px;">attach_money</mat-icon>Sellers</a>
+              <a [routerLink] = "['sellers']" mat-list-item ><mat-icon style="margin-right: 32px;">attach_money</mat-icon>Sellers</a>
               <a [routerLink] = "['alerts']" mat-list-item ><mat-icon style="margin-right: 32px;">notifications_paused</mat-icon>Alerts</a>
               <mat-divider></mat-divider>
               

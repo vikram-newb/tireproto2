@@ -1,25 +1,27 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { BrandsComponent } from './pages/brands/brands.component';
-import { SellersComponent } from './pages/sellers/sellers.component';
 import { AlertsComponent } from './pages/alerts/alerts.component';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent} from './static/header/header.component';
 import { AuthGuard } from './auth.guard';
+import { SellersModule } from './pages/sellers/sellers.module';
+import { BrandsModule } from './pages/brands/brands.module';
+
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent
+    redirectTo: 'login',
+    pathMatch: 'full'
   },
   {
     path: 'login',
     component: LoginComponent
   },
-  { data: {title: 'Dashboard'},
+  { data: { title: 'Dashboard' },
     path: 'header',
     component: HeaderComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard], !! uncomment this this for auth guard to activate
     children: [
       {
         data: {title: 'Dashboard'},
@@ -29,12 +31,12 @@ const routes: Routes = [
       {
        data: {title: 'Brands'},
        path: 'brands',
-       component: BrandsComponent
+       loadChildren: () => import('./pages/brands/brands.module').then(m => m.BrandsModule)
       },
       {
       data: {title: 'Sellers'},
       path: 'sellers',
-      component: SellersComponent
+      loadChildren: () => import('./pages/sellers/sellers.module').then(n => n.SellersModule)
       },
       {
        data: {title: 'Alerts'},

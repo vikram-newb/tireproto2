@@ -2,42 +2,48 @@
 <mat-tab-group>
         <mat-tab label="All">
             <mat-card>
-                <mat-list role="list">
+                <mat-nav-list role="list">
                         <mat-list-item role="listitem">
                             <div class="head_container">
                                 <div>
                                     <span><mat-icon>import_export</mat-icon></span>
                                     <span>&nbsp; MPN No. &nbsp;</span>
-                                    <span>&nbsp;(Brand Name) &nbsp;</span>
+                                    <span>&nbsp;( Brand Name ) &nbsp;</span>
                                     <span>&nbsp;Seller Name &nbsp;</span>
                                 </div>
                                 
                                 <div>
                                     <span>Old Price</span>
-                                    <span><mat-icon>arrow_forwardios</mat-icon></span>
+                                    <span><mat-icon>arrow_forward_ios</mat-icon></span>
                                     <span>New Price</span>
                                     <mat-divider></mat-divider>
                                 </div>
                             </div>
 
                         </mat-list-item>
-                        <mat-list-item role="listitem" *ngFor="let entry of allAlert">
+                        <mat-list-item role="listitem" *ngFor="let entry of All">
                                 <div class="head_container">
                                     <div>
-                                        <span><mat-icon></mat-icon></span>
-                                        <span>&nbsp;{{ entry.mpn }}&nbsp;</span>
-                                        <span>&nbsp;({{ entry.brand }})&nbsp;</span>
-                                        <span>&nbsp;{{ entry.sellerName }}&nbsp;</span>
+                                        <span><mat-icon *ngIf="entry.newPrice - entry.oldPrice > 0; else downward">arrow_upward</mat-icon></span>
+                                        <ng-template #downward>
+                                                <span><mat-icon>arrow_downward</mat-icon></span>
+                                        </ng-template>
+                                        <span>&nbsp;{{ entry.competitorLink['skuId'] }}&nbsp;</span>
+                                        
+                                        <span *ngIf = "entry.competitorLink['competitorId']==12; else TTG">&nbsp;(LionHart)&nbsp;</span>
+                                        <ng-template #TTG><span>&nbsp;(Thunderer Trac Grip)&nbsp;</span></ng-template>
+                                        <span *ngIf = "entry.competitorLink['competitorId']==12; else BWT">&nbsp;IFixItZone&nbsp;</span>
+                                        <ng-template #BWT><span>&nbsp;Buy Wheels Today&nbsp;</span></ng-template>
                                     </div>
                                     <div>
                                         <span>{{entry.oldPrice}}</span>
-                                        <mat-icon>arrow_forwardios</mat-icon>
+                                        <mat-icon>arrow_forward_ios</mat-icon>
                                         <span>{{entry.newPrice}}</span>
                                         <mat-divider></mat-divider>
                                     </div>
                                 </div>
                             </mat-list-item>
-                </mat-list>
+                </mat-nav-list>
                 </mat-card>
         </mat-tab>
         <!--for another tab UNREAD-->
@@ -55,26 +61,33 @@
                                 
                                 <div>
                                     <span>Old Price</span>
-                                    <span><mat-icon>arrow_forwardios</mat-icon></span>
+                                    <span><mat-icon>arrow_forward_ios</mat-icon></span>
                                     <span>New Price</span>
                                 </div>
                             </div>
 
                         </mat-list-item>
-                        <mat-list-item role="listitem" *ngFor="let entry of priceAlert">
-                            <div class="head_container">
-                                <div>
-                                    <span><mat-icon></mat-icon></span>
-                                    <span>&nbsp;{{ entry.mpn }}&nbsp;</span>
-                                    <span>&nbsp;{{ entry.brand }}&nbsp;</span>
-                                    <span>&nbsp;{{ entry.sellerName }}&nbsp;</span>
-                                </div>
-                                <div>
-                                    <span>{{entry.oldPrice}}</span>
-                                    <span><mat-icon>arrow_forwardios</mat-icon></span>
-                                    <span>{{entry.newPrice}}</span>
-                                </div>
-                            </div>
+                        <mat-list-item role="listitem" *ngFor="let wryyy of Unread">
+                                <div class="head_container">
+                                        <div>
+                                            <span><mat-icon *ngIf="wryyy.newPrice - wryyy.oldPrice > 0; else downward">arrow_upward</mat-icon></span>
+                                            <ng-template #downward>
+                                                    <span><mat-icon>arrow_downward</mat-icon></span>
+                                            </ng-template>
+                                            <span>&nbsp;{{ wryyy.competitorLink['skuId'] }}&nbsp;</span>
+                                            
+                                            <span *ngIf = "wryyy.competitorLink['competitorId']==12; else TTG">&nbsp;(LionHart)&nbsp;</span>
+                                            <ng-template #TTG><span>&nbsp;(Thunderer Trac Grip)&nbsp;</span></ng-template>
+                                            <span *ngIf = "wryyy.competitorLink['competitorId']==12; else BWT">&nbsp;IFixItZone&nbsp;</span>
+                                            <ng-template #BWT><span>&nbsp;Buy Wheels Today&nbsp;</span></ng-template>
+                                        </div>
+                                        <div>
+                                            <span>{{wryyy.oldPrice}}</span>
+                                            <mat-icon>arrow_forward_ios</mat-icon>
+                                            <span>{{wryyy.newPrice}}</span>
+                                            <mat-divider></mat-divider>
+                                        </div>
+                                    </div>
                         </mat-list-item>
                         
                 </mat-list>
@@ -95,13 +108,34 @@
                                 
                                 <div>
                                     <span>Old Price</span>
-                                    <span><mat-icon>arrow_forwardios</mat-icon></span>
+                                    <span><mat-icon>arrow_forward_ios</mat-icon></span>
                                     <span>New Price</span>
                                 </div>
                             </div>
 
                         </mat-list-item>
-                        <mat-list-item role="listitem"></mat-list-item>
+                        <mat-list-item role="listitem" *ngFor="let flag of Read">
+                                <div class="head_container">
+                                        <div>
+                                            <span><mat-icon *ngIf="flag.newPrice - flag.oldPrice > 0; else downward">arrow_upward</mat-icon></span>
+                                            <ng-template #downward>
+                                                    <span><mat-icon>arrow_downward</mat-icon></span>
+                                            </ng-template>
+                                            <span>&nbsp;{{ flag.competitorLink['skuId'] }}&nbsp;</span>
+                                            
+                                            <span *ngIf = "flag.competitorLink['competitorId']==12; else TTG">&nbsp;(LionHart)&nbsp;</span>
+                                            <ng-template #TTG><span>&nbsp;(Thunderer Trac Grip)&nbsp;</span></ng-template>
+                                            <span *ngIf = "flag.competitorLink['competitorId']==12; else BWT">&nbsp;IFixItZone&nbsp;</span>
+                                            <ng-template #BWT><span>&nbsp;Buy Wheels Today&nbsp;</span></ng-template>
+                                        </div>
+                                        <div>
+                                            <span>{{flag.oldPrice}}</span>
+                                            <mat-icon>arrow_forward_ios</mat-icon>
+                                            <span>{{flag.newPrice}}</span>
+                                            <mat-divider></mat-divider>
+                                        </div>
+                                    </div>
+                        </mat-list-item>
                         
                 </mat-list>
             </mat-card>
