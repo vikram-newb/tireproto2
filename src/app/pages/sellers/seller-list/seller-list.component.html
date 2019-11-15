@@ -1,6 +1,6 @@
 <div class="btnflex">
-    <button  mat-raised-button color="primary" style="margin-right:20px" >ADD SELLER PRODUCT</button>
-    <button  mat-raised-button color="primary" style="margin-right:20px">ADD SELLER</button>
+    <button (click)='openDialog()' mat-raised-button color="primary" style="margin-right:20px" >ADD SELLER PRODUCT</button>
+    <button (click)='addsellerDialog()' mat-raised-button color="primary" style="margin-right:20px">ADD SELLER</button>
 </div>
 
 <mat-card style="margin:auto 15px;" >
@@ -11,10 +11,10 @@
                     <div style="display:flex;flex:1;">
                         <span matSuffix>{{seller.name}}</span>
                     </div>
-                    <div><span><mat-icon>playlist_add</mat-icon></span>
-                        <span><mat-icon>list</mat-icon></span>
-                        <span><mat-icon>delete_forever</mat-icon></span>
-                        <span><mat-icon>next_week</mat-icon></span>
+                    <div><span><button mat-button><mat-icon>playlist_add</mat-icon></button></span>
+                        <span><button mat-button><mat-icon>list</mat-icon></button></span>
+                        <span><button mat-button><mat-icon>delete_forever</mat-icon></button></span>
+                        <span><button mat-button><mat-icon>next_week</mat-icon></button></span>
                     </div>
                                 
             </a>

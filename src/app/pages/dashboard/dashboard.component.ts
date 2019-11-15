@@ -1,35 +1,58 @@
 import { Component, OnInit } from '@angular/core';
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
-
-
-
+import {FormControl, Validators} from '@angular/forms';
+import LionHart_db from 'src/assets/data/Dashboard_LionHart.json';
+import Thunderer_db from 'src/assets/data/Dashboard_Thunderer.json';
+import brands_db from 'src/assets/data/brands_data.json';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  // displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  // dataSource = ELEMENT_DATA;
+  tableControl = new FormControl('', [Validators.required]);
+  currentBrand : any;
+  isToggled = false;
+  public Thunderer: {Sku: string, ProductName: string, OurPrice: number, Quantity: number, SellerInfo:object}[] = Thunderer_db.RowData;
+  public LionHart: {Sku: string, ProductName: string, OurPrice: number, Quantity: number, SellerInfo: object}[] = LionHart_db.RowData;
+  public brands: {id: number, name: string}[] = brands_db;
+  displayedColumns: string[] = ['Sku', 'ProductName', 'OurPrice', 'Quantity', 'SellerPrice', 'SellerSold'];
+  columnsToDisplay: string[] = this.displayedColumns.slice();
   constructor() { }
 
-  ngOnInit() { }
+  
+  modifyTable(){
+    this.isToggled = !this.isToggled;
+    if (this.isToggled){
+      // this.addColumn();
+      this.displayedColumns = ['Sku', 'ProductName', 'OurPrice', 'Quantity', 'SellerPrice', 'SellerSold'];
+    }
+    else{
+      
+      this.displayedColumns = ['Sku', 'ProductName', 'OurPrice', 'Quantity'];
+      // this.removeColumn();
+    }
+  }
+
+  // addColumn() {
+    
+  //   this.columnsToDisplay.push(this.displayedColumns[randomColumn]);
+  // }
+
+  // removeColumn() {
+  //   if (this.columnsToDisplay.length) {
+  //     this.columnsToDisplay.pop();
+  //   }
+  // }
+
+  
+  ngOnInit() { 
+    this.tableControl.valueChanges.subscribe(brand => {
+      this.currentBrand = (brand.name == "Lionhart") ?  this.LionHart : this.Thunderer; 
+      this.currentBrand.forEach(element => {
+        console.log(element.SellerInfo)
+      });
+    })
+  }
 }
