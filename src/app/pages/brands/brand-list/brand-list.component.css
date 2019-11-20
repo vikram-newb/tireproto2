@@ -12,3 +12,18 @@
     justify-content: space-between;
     width:100%
 }
+.circle-icon{
+    color:#6d6d6d;
+    background: #eeeeee;
+    border-radius: 50%;
+    width: 30px!important;
+    height: 30px!important;
+    font-size: 16px!important;
+    text-align: center;
+    line-height: 30px;
+    margin-right: 20px;
+}
+.text-style{
+    
+    text-align: left;
+}

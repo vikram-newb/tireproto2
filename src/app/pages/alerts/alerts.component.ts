@@ -17,9 +17,11 @@ export class AlertsComponent implements OnInit {
 
   dif: any;
   dif2: any;
-  public All: {id:string, skuId: string, competitorLink: object,  competitorId: number, oldPrice: number, newPrice: number }[] = All_data.data;
-  public Read: {id:string, skuId: string, competitorLink: object, competitorId: number, oldPrice: number, newPrice: number }[] = Read_data.data;
-  public Unread: {id:string, skuId: string, competitorLink: object, competitorId: number, oldPrice: number, newPrice: number }[] = Unread_data.data;
+  public All: any = All_data.data;
+  public Read: any = Read_data.data;
+  public Unread: any = Unread_data.data;
+
+  // {id:string, skuId: string, competitorLink: object, competitorId: number, oldPrice: number, newPrice: number }[]
 
   constructor() {
     

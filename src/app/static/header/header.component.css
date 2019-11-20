@@ -3,25 +3,14 @@
     flex-direction: row;
     justify-content: space-between;
 }
-mat-sidenav {
-    width: 240px;
-  }
 
-  /* md-sidenav { 
-      background-color: #f8921e; 
-      overflow: hidden; 
-    } 
-  md-nav-list a[md-list-item] { 
-      color: #fff;
-    } 
-  md-nav-list a[md-list-item] .md-list-item{ 
-      padding: 0 10px !important; 
-    } 
-  .md-sidenav-over.md-sidenav-closed md-nav-list a[md-list-item] .md-list-text {
-       display: none !important; 
-    } 
-    md-sidenav.md-sidenav-closed {
-         transform: translate3d(0, 0, 0) !important; 
-         visibility: visible !important; 
-         min-width: 40px !important; 
-    } */
+#sidenav.menu-open{
+    width:240px;
+}
+
+#sidenav.menu-close{
+     width:70px !important;
+} 
+      
+
+    

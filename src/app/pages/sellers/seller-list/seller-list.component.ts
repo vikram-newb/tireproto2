@@ -13,7 +13,7 @@ import { filter } from 'rxjs/internal/operators';
 })
 export class SellerListComponent implements OnInit {
 
-  public Seller: {id: string, name: string}[] = seller_data;
+  public Seller: {id: number, name: string}[] = seller_data;
   seller: any;
   // public sellers = [
   //   {
@@ -46,8 +46,12 @@ export class SellerListComponent implements OnInit {
         width: '380px',
         height: '259px',
       });
-    addsellerdialogRef.afterClosed().pipe(filter(name => name)).subscribe(name => this.seller.push({
-      name, content: ''
-    }));
+    addsellerdialogRef.afterClosed().pipe(filter(name => name)).subscribe(name => {
+      const id = this.Seller[this.Seller.length - 1].id ++;
+      this.Seller.push({
+      name,
+      id
+    });
+    });
   }
 }

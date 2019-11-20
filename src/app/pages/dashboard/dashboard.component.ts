@@ -14,13 +14,14 @@ export class DashboardComponent implements OnInit {
   tableControl = new FormControl('', [Validators.required]);
   currentBrand : any;
   isToggled = false;
-  public Thunderer: {Sku: string, ProductName: string, OurPrice: number, Quantity: number, SellerInfo:object}[] = Thunderer_db.RowData;
-  public LionHart: {Sku: string, ProductName: string, OurPrice: number, Quantity: number, SellerInfo: object}[] = LionHart_db.RowData;
+  public Thunderer: any = Thunderer_db.RowData;
+  public LionHart: any = LionHart_db.RowData;
   public brands: {id: number, name: string}[] = brands_db;
   displayedColumns: string[] = ['Sku', 'ProductName', 'OurPrice', 'Quantity', 'SellerPrice', 'SellerSold'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
   constructor() { }
 
+  // {Sku: string, ProductName: string, OurPrice: number, Quantity: number, SellerInfo:object}[]
   
   modifyTable(){
     this.isToggled = !this.isToggled;

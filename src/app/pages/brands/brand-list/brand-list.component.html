@@ -1,7 +1,7 @@
 <div class="btnflex">
         <button mat-raised-button color="primary" style="margin-right:20px">UPLOAD CSV</button>
-        <button mat-raised-button color="primary" style="margin-right:20px">ADD PRODUCT</button>
-        <button mat-raised-button color="primary" style="margin-right:20px">ADD BRAND</button>
+        <button (click) = "openAddProduct()" mat-raised-button color="primary" style="margin-right:20px">ADD PRODUCT</button>
+        <button (click) = "openAddBrand()" mat-raised-button color="primary" style="margin-right:20px">ADD BRAND</button>
         </div>
         
         <mat-card style="margin:auto 15px;">
@@ -10,7 +10,9 @@
                      
                     <a mat-list-item *ngFor="let brand of Brand" [routerLink]="[brand.id]"  >
                         <div style="display:flex;flex:1;">
-                            <span matSuffix>{{brand.name}}</span>
+                            <span class="circle-icon">{{brand.name[0]}}</span>
+                           
+                            <span matSuffix class="textStyle">{{brand.name}}</span>
                         </div>
                         <div>
                             <button mat-button><mat-icon>delete_forever</mat-icon></button>

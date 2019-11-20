@@ -4,10 +4,10 @@
             <div class="headFlex">
                 <div><span>
                     <!-- <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" > -->
-                        <button *ngIf="toggleState" (click)="sidenav.toggle() && toggleState = !toggleState" mat-button><mat-icon>menu</mat-icon></button> 
-                        <button *ngIf="!toggleState" (click)="sidenav.toggle() && toggleState = !toggleState" mat-button><mat-icon>more_vert</mat-icon></button>
+                        <button *ngIf="toggleState" (click)="sidenav.toggle() && toggleState = !toggleState " mat-button><mat-icon>more_vert</mat-icon></button> 
+                        <button *ngIf="!toggleState" (click)="sidenav.toggle() && toggleState = !toggleState " mat-button><mat-icon>menu</mat-icon></button>
                          <!-- <mat-icon>menu</mat-icon> -->
-                         
+                         <!-- (click)="sidenav.toggle() && toggleState = !toggleState " -->
                     <!-- </button> -->
                     </span>
                 </div>
@@ -17,15 +17,17 @@
                     </span>
                 </div>
                 <div>
-                    <span><a href="#" mat-button><mat-icon>power_settings_new</mat-icon></a>
+                    <!-- <span><a (click)="logout()" mat-button><mat-icon>power_settings_new</mat-icon></a> -->
+                      <span><a href="#" mat-button><mat-icon>power_settings_new</mat-icon></a>
+
                     </span>
                 </div>
             </div>
           </mat-toolbar-row>
         </mat-toolbar>
       
-        <mat-sidenav-container fxFlexFill hasBackdrop="false" style="width:240px;">
-          <mat-sidenav #sidenav mode="side" >
+        <mat-sidenav-container fxFlexFill hasBackdrop="false" >
+          <mat-sidenav #sidenav mode="side" id="sidenav" [class.menu-open]= !toggleState  [class.menu-close]= toggleState [opened]="true">
             <mat-nav-list >
               <a [routerLink] = "['dashboard']" mat-list-item ><mat-icon style="margin-right: 32px;">dashboard</mat-icon>Dashboard</a>
               <a [routerLink] = "['brands']" mat-list-item ><mat-icon style="margin-right: 32px;">format_bold</mat-icon>Brands</a>
@@ -35,7 +37,7 @@
               
             </mat-nav-list>
           </mat-sidenav>
-          <mat-sidenav-content fxFlexFill fxFlex="90%">
+          <mat-sidenav-content fxFlexFill fxFlex="95%">
             <router-outlet></router-outlet>
           </mat-sidenav-content>
         </mat-sidenav-container>

@@ -20,7 +20,8 @@ import { HeaderComponent } from './static/header/header.component';
 import { Dial1Component } from './pages/dial1/dial1.component';
 import { AddsellerdialogComponent } from './pages/addsellerdialog/addsellerdialog.component';
 import { AuthGuard } from './auth.guard';
-
+import { AddBrandDiaComponent} from './pages/add-brand-dia/add-brand-dia.component';
+import { AddProductDiaComponent} from './pages/add-product-dia/add-product-dia.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,8 @@ import { AuthGuard } from './auth.guard';
     HeaderComponent,
     Dial1Component,
     AddsellerdialogComponent,
+    AddBrandDiaComponent,
+    AddProductDiaComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,8 @@ import { AuthGuard } from './auth.guard';
     MatDialogModule,
   ],
   entryComponents: [Dial1Component,
-    AddsellerdialogComponent,
+    AddsellerdialogComponent, AddBrandDiaComponent,
+    AddProductDiaComponent,
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

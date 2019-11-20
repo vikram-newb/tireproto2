@@ -1,0 +1,21 @@
+<div>
+    <p mat-dialog-title>Add Seller Product</p>
+    <p>Please enter details of you product</p>
+    <mat-form-field style="width:100%;">
+        <input matInput placeholder="MPN*">
+    </mat-form-field><br>
+    <mat-form-field style="width:100%;">
+        <input matInput placeholder="Description">
+    </mat-form-field><br>
+    <mat-form-field>
+        <mat-select placeholder="Brand">
+            <mat-option value="option" *ngFor = 'let item of brand'></mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-dialog-actions>
+            <div style="display: flex; flex-direction: row; justify-content: flex-end;">
+                    <button mat-button-type="submit" mat-raised-button color="primary" style="margin-right: 15px;;">Add</button>
+                    <button mat-raised-button mat-dialog-close>Cancel</button>
+                    </div>
+    </mat-dialog-actions>
+</div>

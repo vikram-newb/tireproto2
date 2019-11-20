@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { filter, map, mergeMap } from 'rxjs/internal/operators';
 
@@ -10,7 +10,7 @@ import { filter, map, mergeMap } from 'rxjs/internal/operators';
 export class HeaderComponent implements OnInit {
   pageTitle: string;
   toggleState: any;
- 
+  
   constructor(private router: Router, private activeRoute: ActivatedRoute) { }
 
   private setTitleFromRouteData(routeData) {
@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
         this.pageTitle = 'No title';
     }
 }
+
 
 private getLatestChild(route) {
   while (route.firstChild) {
@@ -47,5 +48,8 @@ private subscribeToRouteChangeEvents() {
 
   ngOnInit() {
     this.subscribeToRouteChangeEvents();
+  }
+  public logout(){
+    localStorage.setItem('isLoggedin', 'false');
   }
 }

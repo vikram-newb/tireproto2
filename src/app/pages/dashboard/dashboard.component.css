@@ -11,3 +11,13 @@ table {
 .slodeTog{
     margin-left:15px;
 }
+.mat-header-cell{
+    font-size:17px;
+}
+.mat-cell{
+    font-size:15px;
+}
+.includePartition{
+    border-left:1px solid #e0e0e0;
+    text-align: center;
+}

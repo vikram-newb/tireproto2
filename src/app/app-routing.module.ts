@@ -12,16 +12,16 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'login',
-    pathMatch: 'full'
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
   },
   { data: { title: 'Dashboard' },
     path: 'header',
     component: HeaderComponent,
-    // canActivate: [AuthGuard], !! uncomment this this for auth guard to activate
     children: [
       {
         data: {title: 'Dashboard'},

@@ -1,14 +1,14 @@
 
-<mat-tab-group>
-        <mat-tab label="All">
+<mat-tab-group style="margin-left: 20px;">
+        <mat-tab label="All" style="font-size:14px;">
             <mat-card>
                 <mat-nav-list role="list">
                         <mat-list-item role="listitem">
                             <div class="head_container">
                                 <div>
-                                    <span><mat-icon>import_export</mat-icon></span>
-                                    <span>&nbsp; MPN No. &nbsp;</span>
-                                    <span>&nbsp;( Brand Name ) &nbsp;</span>
+                                    <span><mat-icon style = "border-radius: 50%; background:#eeeeee;">import_export</mat-icon></span>
+                                    <span style="width: 200px; font: 18px;">&nbsp; MPN No. (Brand Name) &nbsp;</span>
+                                    <!-- <span>&nbsp;( Brand Name ) &nbsp;</span> -->
                                     <span>&nbsp;Seller Name &nbsp;</span>
                                 </div>
                                 
@@ -24,13 +24,13 @@
                         <mat-list-item role="listitem" *ngFor="let entry of All">
                                 <div class="head_container">
                                     <div>
-                                        <span><mat-icon *ngIf="entry.newPrice - entry.oldPrice > 0; else downward">arrow_upward</mat-icon></span>
+                                        <span><mat-icon *ngIf="entry.newPrice - entry.oldPrice > 0; else downward" style="background:green; border-radius: 50%; color:white;">arrow_upward</mat-icon></span>
                                         <ng-template #downward>
-                                                <span><mat-icon>arrow_downward</mat-icon></span>
+                                                <span><mat-icon style="background:red; border-radius: 50%; color:white;">arrow_downward</mat-icon></span>
                                         </ng-template>
                                         <span>&nbsp;{{ entry.competitorLink['skuId'] }}&nbsp;</span>
                                         
-                                        <span *ngIf = "entry.competitorLink['competitorId']==12; else TTG">&nbsp;(LionHart)&nbsp;</span>
+                                        <span *ngIf = "entry.competitorLink['competitorId']==12; else TTG" style="font:18px;">&nbsp;(LionHart)&nbsp;</span>
                                         <ng-template #TTG><span>&nbsp;(Thunderer Trac Grip)&nbsp;</span></ng-template>
                                         <span *ngIf = "entry.competitorLink['competitorId']==12; else BWT">&nbsp;IFixItZone&nbsp;</span>
                                         <ng-template #BWT><span>&nbsp;Buy Wheels Today&nbsp;</span></ng-template>
@@ -49,7 +49,7 @@
         <!--for another tab UNREAD-->
         <mat-tab label="Unread">
                 <mat-card>
-                <mat-list role="list">
+                <mat-nav-list role="list">
                         <mat-list-item role="listitem">
                             <div class="head_container">
                                 <div>
@@ -70,9 +70,9 @@
                         <mat-list-item role="listitem" *ngFor="let wryyy of Unread">
                                 <div class="head_container">
                                         <div>
-                                            <span><mat-icon *ngIf="wryyy.newPrice - wryyy.oldPrice > 0; else downward">arrow_upward</mat-icon></span>
+                                            <span><mat-icon *ngIf="wryyy.newPrice - wryyy.oldPrice > 0; else downward" class="circleUp-icon">arrow_upward</mat-icon></span>
                                             <ng-template #downward>
-                                                    <span><mat-icon>arrow_downward</mat-icon></span>
+                                                    <span><mat-icon style="background:red; border-radius: 50%; color:white;">arrow_downward</mat-icon></span>
                                             </ng-template>
                                             <span>&nbsp;{{ wryyy.competitorLink['skuId'] }}&nbsp;</span>
                                             
@@ -90,13 +90,13 @@
                                     </div>
                         </mat-list-item>
                         
-                </mat-list>
+                </mat-nav-list>
             </mat-card>
         </mat-tab>
         <!--For Another Tab Read-->
         <mat-tab label="Read">
                 <mat-card>
-                <mat-list role="list">
+                <mat-nav-list role="list">
                         <mat-list-item role="listitem">
                             <div class="head_container">
                                 <div>
@@ -117,9 +117,9 @@
                         <mat-list-item role="listitem" *ngFor="let flag of Read">
                                 <div class="head_container">
                                         <div>
-                                            <span><mat-icon *ngIf="flag.newPrice - flag.oldPrice > 0; else downward">arrow_upward</mat-icon></span>
+                                            <span><mat-icon *ngIf="flag.newPrice - flag.oldPrice > 0; else downward" style="background:green; border-radius: 50%; color:white;">arrow_upward</mat-icon></span>
                                             <ng-template #downward>
-                                                    <span><mat-icon>arrow_downward</mat-icon></span>
+                                                    <span><mat-icon style="background:red; border-radius: 50%; color:white;">arrow_downward</mat-icon></span>
                                             </ng-template>
                                             <span>&nbsp;{{ flag.competitorLink['skuId'] }}&nbsp;</span>
                                             
@@ -137,7 +137,7 @@
                                     </div>
                         </mat-list-item>
                         
-                </mat-list>
+                </mat-nav-list>
             </mat-card>
         </mat-tab>
 </mat-tab-group>

@@ -40,7 +40,7 @@ export class ApiService {
 
 
     loggedIn() {
-      return !!localStorage.getItem('token');
+      return localStorage.getItem('isLoggedin');
     }
 
 

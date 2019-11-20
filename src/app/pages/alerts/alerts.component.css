@@ -5,3 +5,17 @@
     margin-top:10px;
     width:80%;
 }
+
+.circleUp-icon{
+    background: green;
+    border-radius: 50%;
+    color: white;
+}
+.circleDown-icon{
+    background: red;
+    border-radius: 50%;
+    color: white;
+}
+.f18{
+    font-size:18px;
+}
