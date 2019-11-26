@@ -1,7 +1,7 @@
 <table mat-table [dataSource]=" dataSourceA" style="width:100%; margin:24px;">
     <ng-container matColumnDef="id" style="width:30%">
         <th mat-header-cell *matHeaderCellDef > MPN </th>
-        <td mat-cell *matCellDef="let element">{{element.id}}</td>
+        <td mat-cell *matCellDef="let element">{{element.skuId}}</td>
         <td></td>
     </ng-container>
     <ng-container matColumnDef="desc" style="width:70%">

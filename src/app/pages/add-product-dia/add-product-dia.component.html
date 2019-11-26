@@ -1,15 +1,15 @@
-<div>
-    <p mat-dialog-title>Add Seller Product</p>
+<form [formGroup] = "form" (ngSubmit)="submit(form)">
+    <p mat-dialog-title>Add Product</p>
     <p>Please enter details of you product</p>
     <mat-form-field style="width:100%;">
-        <input matInput placeholder="MPN*">
+        <input matInput placeholder="MPN*" formControlName = "skuId">
     </mat-form-field><br>
     <mat-form-field style="width:100%;">
-        <input matInput placeholder="Description">
+        <input matInput placeholder="Description" formControlName = "desc">
     </mat-form-field><br>
     <mat-form-field>
-        <mat-select placeholder="Brand">
-            <mat-option value="option" *ngFor = 'let item of brand'></mat-option>
+        <mat-select placeholder="Brand" formControlName="brand">
+            <mat-option *ngFor="let item of brandArray" [value]="item">{{item.name}}</mat-option>
         </mat-select>
     </mat-form-field>
     <mat-dialog-actions>
@@ -18,4 +18,4 @@
                     <button mat-raised-button mat-dialog-close>Cancel</button>
                     </div>
     </mat-dialog-actions>
-</div>
+</form>

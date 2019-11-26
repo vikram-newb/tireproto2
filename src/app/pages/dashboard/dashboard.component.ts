@@ -9,10 +9,9 @@ import brands_db from 'src/assets/data/brands_data.json';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  // displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  // dataSource = ELEMENT_DATA;
+
   tableControl = new FormControl('', [Validators.required]);
-  currentBrand : any;
+  currentBrand: any;
   isToggled = false;
   public Thunderer: any = Thunderer_db.RowData;
   public LionHart: any = LionHart_db.RowData;
@@ -22,22 +21,21 @@ export class DashboardComponent implements OnInit {
   constructor() { }
 
   // {Sku: string, ProductName: string, OurPrice: number, Quantity: number, SellerInfo:object}[]
-  
-  modifyTable(){
+
+  modifyTable() {
     this.isToggled = !this.isToggled;
-    if (this.isToggled){
+    if (this.isToggled) {
       // this.addColumn();
       this.displayedColumns = ['Sku', 'ProductName', 'OurPrice', 'Quantity', 'SellerPrice', 'SellerSold'];
-    }
-    else{
-      
+    } else {
+
       this.displayedColumns = ['Sku', 'ProductName', 'OurPrice', 'Quantity'];
       // this.removeColumn();
     }
   }
 
   // addColumn() {
-    
+
   //   this.columnsToDisplay.push(this.displayedColumns[randomColumn]);
   // }
 
@@ -47,13 +45,13 @@ export class DashboardComponent implements OnInit {
   //   }
   // }
 
-  
-  ngOnInit() { 
+
+  ngOnInit() {
     this.tableControl.valueChanges.subscribe(brand => {
-      this.currentBrand = (brand.name == "Lionhart") ?  this.LionHart : this.Thunderer; 
+      this.currentBrand = (brand.name === 'Lionhart') ?  this.LionHart : this.Thunderer;
       this.currentBrand.forEach(element => {
-        console.log(element.SellerInfo)
+        console.log(element.SellerInfo);
       });
-    })
+    });
   }
 }

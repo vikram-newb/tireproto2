@@ -3,7 +3,10 @@ import { catchError, retry } from 'rxjs/internal/operators';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { User } from './user';
 import { Observable, of } from 'rxjs';
-const localUrl = 'http://localhost:8000/login';
+import { Brand } from './pages/brands/brand';
+
+
+const localUrl = 'http://18.191.108.43:8000/login';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -21,14 +24,8 @@ export class ApiService {
     return this.http.get(localUrl);
   }
 
-
-  //  getUser(): Observable<any> {
-  //    httpOptions.headers = httpOptions.headers.set('Authorization', 'my-new-auth-token');
-  //    return this.http.get<User[]>(localUrl, httpOptions).pipe(retry(3), ;
-  //  }
-
    isValidUser(body: User) {
-     return this.http.post(localUrl, body, httpOptions);
+     return this.http.post(localUrl , body, httpOptions);
     //  .pipe(
     //   catchError(this.handleError('loginUser', [])));
     }
@@ -38,10 +35,15 @@ export class ApiService {
     //   return this.http.get(localUrl);
     // }
 
+    // addBrand(brand: Brand): Observable<Brand> {
+      // return this.http.post<Brand>(localUrl, brand, httpOptions).pipe()
+    // }
 
     loggedIn() {
       return localStorage.getItem('isLoggedin');
     }
+
+
 
 
    private handleError<T>(operation = 'operation', result?: T) {

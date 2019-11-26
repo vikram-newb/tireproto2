@@ -24,9 +24,11 @@ export class LoginComponent implements OnInit {
   }
   onLogin() {
     this.api.isValidUser(this.UserForm.value)
-             .subscribe(response => {
-               console.log(response);
+             .subscribe((response: any) => {
+               const s = 'email';
                localStorage.setItem('isLoggedin', 'true');
+               localStorage.setItem('authEmail', this.UserForm.controls[s].value);
+               localStorage.setItem('token', response.token);
                this.router.navigate(['header', 'dashboard']);
     });
   }

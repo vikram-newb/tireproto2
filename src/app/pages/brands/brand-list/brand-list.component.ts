@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {AddBrandDiaComponent} from 'src/app/pages/add-brand-dia/add-brand-dia.component';
 import {AddProductDiaComponent} from 'src/app/pages/add-product-dia/add-product-dia.component';
-import brand_data from 'src/assets/data/brands_data.json';
+// import brand_data from 'src/assets/data/brands_data.json';
 import { filter } from 'rxjs/internal/operators';
-
+import {BrandsService } from '../brands.service';
+import { Brand } from '../brand';
 @Component({
   selector: 'app-brand-list',
   templateUrl: './brand-list.component.html',
@@ -12,35 +13,54 @@ import { filter } from 'rxjs/internal/operators';
 })
 export class BrandListComponent implements OnInit {
 
-  public Brand: {id: string, name: string}[] = brand_data;
-  brand:any
-  constructor(public dialog: MatDialog) { }
+  // public Brand: {id: string, name: string}[] = brand_data;
+  // brand: any;
+  brands: Brand[];
+  editBrand: Brand; // the brand currently being edited
+  constructor(public dialog: MatDialog, private brandService: BrandsService) { }
 
   ngOnInit() {
+    this.getBrands();
   }
 
-  openAddBrand(): void{
+  getBrands() {
+    this.brandService.getBrands().subscribe(data => this.brands = data);
+    // getBrands().subscribe(brands => (this.brands = brands));
+  }
+
+  delete(brand: Brand) {
+    event.preventDefault();
+    this.brands = this.brands.filter(b => b !== brand);
+    // this.brandService.deleteBrand(brand.id).subscribe();
+  }
+
+  edit(brand: Brand) {
+    this.editBrand = brand;
+  }
+
+  openAddBrand() {
     const brandRef = this.dialog.open(AddBrandDiaComponent,
-      {width: '303.28px',
+      {
+       width: '303.28px',
        height: '226px',
      });
-   brandRef.afterClosed().pipe(
+    brandRef.afterClosed().pipe(
     filter(name => name)
-  ).subscribe(name => {
-    this.Brand.push({ name, id: ''});
+  ).subscribe(result => {
+    console.log('exit');
   });
-  }
-  
-  openAddProduct(): void{
+
+}
+  openAddProduct() {
     const productRef = this.dialog.open(AddProductDiaComponent,
       {
         width: '510px',
         height: '346px',
       });
-    productRef.afterClosed().pipe(filter(name => name)).subscribe(name => this.brand.push({
-      name, id: this.Brand[length-1].id + 1
-    }));
-    
+    productRef.afterClosed().pipe(
+      filter(brandId => brandId)
+      ).subscribe(result => {
+        console.log('exit');
+      });
   }
 }
-

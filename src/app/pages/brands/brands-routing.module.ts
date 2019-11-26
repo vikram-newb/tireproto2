@@ -5,8 +5,8 @@ import { BrandDetailComponent } from './brand-detail/brand-detail.component';
 
 
 const routes: Routes = [
-  {path:'', component: BrandListComponent},
-  {path:':id', component: BrandDetailComponent},
+  {path: '', component: BrandListComponent},
+  {path: ':id', component: BrandDetailComponent},
 ];
 
 @NgModule({
