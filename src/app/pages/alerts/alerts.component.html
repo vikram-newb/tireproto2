@@ -21,18 +21,18 @@
                             </div>
 
                         </mat-list-item>
-                        <mat-list-item role="listitem" *ngFor="let entry of All">
+                        <mat-list-item role="listitem" *ngFor="let entry of alerts">
                                 <div class="head_container">
                                     <div>
                                         <span><mat-icon *ngIf="entry.newPrice - entry.oldPrice > 0; else downward" style="background:green; border-radius: 50%; color:white;">arrow_upward</mat-icon></span>
                                         <ng-template #downward>
                                                 <span><mat-icon style="background:red; border-radius: 50%; color:white;">arrow_downward</mat-icon></span>
                                         </ng-template>
-                                        <span>&nbsp;{{ entry.competitorLink['skuId'] }}&nbsp;</span>
+                                        <span>&nbsp;{{ entry.competitorLink.skuId }}&nbsp;</span>
                                         
-                                        <span *ngIf = "entry.competitorLink['competitorId']==12; else TTG" style="font:18px;">&nbsp;(LionHart)&nbsp;</span>
+                                        <span *ngIf = "entry.competitorLink.competitorId ==12; else TTG" style="font:18px;">&nbsp;(LionHart)&nbsp;</span>
                                         <ng-template #TTG><span>&nbsp;(Thunderer Trac Grip)&nbsp;</span></ng-template>
-                                        <span *ngIf = "entry.competitorLink['competitorId']==12; else BWT">&nbsp;IFixItZone&nbsp;</span>
+                                        <span *ngIf = "entry.competitorLink.competitorId; else BWT">&nbsp;IFixItZone&nbsp;</span>
                                         <ng-template #BWT><span>&nbsp;Buy Wheels Today&nbsp;</span></ng-template>
                                     </div>
                                     <div>
@@ -67,7 +67,7 @@
                             </div>
 
                         </mat-list-item>
-                        <mat-list-item role="listitem" *ngFor="let wryyy of Unread">
+                        <mat-list-item role="listitem" *ngFor="let wryyy of unreadAlerts">
                                 <div class="head_container">
                                         <div>
                                             <span><mat-icon *ngIf="wryyy.newPrice - wryyy.oldPrice > 0; else downward" class="circleUp-icon">arrow_upward</mat-icon></span>
@@ -114,7 +114,7 @@
                             </div>
 
                         </mat-list-item>
-                        <mat-list-item role="listitem" *ngFor="let flag of Read">
+                        <mat-list-item role="listitem" *ngFor="let flag of readAlerts">
                                 <div class="head_container">
                                         <div>
                                             <span><mat-icon *ngIf="flag.newPrice - flag.oldPrice > 0; else downward" style="background:green; border-radius: 50%; color:white;">arrow_upward</mat-icon></span>

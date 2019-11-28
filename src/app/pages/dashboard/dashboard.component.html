@@ -1,15 +1,13 @@
 <div class="head2" style="margin-left: 20px; ">
     <div>
-        <mat-form-field >
-            <mat-select placeholder="Choose another brand" [formControl] = "tableControl" required>
-                <!-- <mat-option value="Thunderer Trac Grip">Thunderer Trac Grip</mat-option>
-                <mat-option value="Lion Hart">Lion Hart</mat-option> -->
-                <mat-option *ngFor="let brand of brands" [value]="brand">
-                    {{brand.name}}</mat-option>
+        <form [formGroup]="form">
+        <mat-form-field>
+            <mat-select placeholder="Choose anotherr brand" formControlName="brand" required>
+                <mat-option *ngFor="let item of brandArray" [value]="item">
+                    {{item.name}}</mat-option>
             </mat-select>
         </mat-form-field>
-        
-            
+    </form>    
     </div>
     <div style="display:flex;flex-direction:row;align-items: center;">
         <button mat-raised-button color="primary" style="margin-right: 15px;">EXPORT AS CSV</button>
@@ -19,7 +17,7 @@
  
     
           
-          <table mat-table [dataSource]= 'currentBrand' style='width:100%; margin-left: 20px;'>
+          <table mat-table [dataSource]= 'dashArray' style='width:100%; margin-left: 20px;'>
           <ng-container matColumnDef="Sku">
                   <th mat-header-cell *matHeaderCellDef > MPN </th>
                   <td mat-cell *matCellDef="let element"> {{element.Sku}} </td>

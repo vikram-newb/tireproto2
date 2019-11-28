@@ -5,7 +5,8 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Brand } from './brand';
 import { BrandProduct } from './brandProduct';
-
+import { Alerts } from '../alerts/alerts';
+import { DashboardBrandProduct } from '../dashboard/dashboardBrandProduct';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'
@@ -19,6 +20,7 @@ export class BrandsService {
   brandsUrl = 'http://18.191.108.43:8000/api/brands';
   BrandProductsUrl = 'http://18.191.108.43:8000/api/brandProducts';
   viewAllProductsUrl = 'http://18.191.108.43:8000/api/brands';
+  alertsUrl = 'http://18.191.108.43:8000/api/alert?q-expand=true&q-limit=100&q-offset=0&q-order=desc-created';
 
 
   constructor(private http: HttpClient) { }
@@ -36,23 +38,15 @@ export class BrandsService {
     return this.http.post<Brand>(url, name, httpOptions);
   }
 
-  public deleteBrand(id: number): Observable<{}> {
-    const url = `${this.brandsUrl}/${id}`;
+  public deleteBrand(brandId: number): Observable<{}> {
+    // const url = `${this.brandsUrl}/${id}`;
+    const url = this.brandsUrl + '/' + brandId + '?auth-email=' + this.authEmail + '&auth-token=' + this.token;
     return this.http.delete(url, httpOptions);
   }
 
-  public updateBrand(brand: Brand): Observable<Brand> {
-    return this.http.put<Brand>(this.brandsUrl, brand, httpOptions);
-  }
-
-  // public createBrandProduct(brand: Brand): Observable<Brand> {
-  //   const url = this.BrandProductsUrl + '?auth-email=' + this.authEmail + '&auth-token=' + this.token;
-  //   return this.http.post<Brand>(url, brand, httpOptions);
-  // }
-
-  public getAllProductsOfBrand(brandId: string): Observable<BrandProduct> {
+  public getAllProductsOfBrand(brandId: string): Observable<BrandProduct[]> {
     const url = this.BrandProductsUrl + '?brandId=' + brandId + '&auth-email=' + this.authEmail + '&auth-token=' + this.token;
-    return this.http.get<BrandProduct>(url, httpOptions);
+    return this.http.get<BrandProduct[]>(url, httpOptions);
   }
 
   public addProduct(brandId: string): Observable<BrandProduct> {
@@ -60,11 +54,29 @@ export class BrandsService {
     return this.http.post<BrandProduct>(url, brandId, httpOptions);
   }
 
-  public viewAllProductOfParticularBrand(id: string): Observable<Brand> {
-    const url = this.viewAllProductsUrl + '?id=' + id + '&auth-email=' + this.authEmail + '&auth-token=' + this.token;
-    return this.http.get<Brand>(url, httpOptions);
+  public deleteProduct(id: number): Observable<{}> {
+    const url = this.BrandProductsUrl + '/' + id + '?auth-email=' + this.authEmail + '&auth-token=' + this.token;
+    return this.http.delete(url, httpOptions);
   }
 
-  
+  public getAlerts(): Observable<Alerts[]> {
+    const url = this.alertsUrl + '&auth-email=' + this.authEmail + '&auth-token=' + this.token;
+    return this.http.get<Alerts[]>(url, httpOptions);
+}
 
+  public getUnreadAlerts(): Observable<Alerts[]> {
+    const url = this.alertsUrl + '&status=0' + '&auth-email=' + this.authEmail + '&auth-token=' + this.token;
+    return this.http.get<Alerts[]>(url, httpOptions)
+  }
+
+  public getreadAlerts(): Observable<Alerts[]> {
+    const url = this.alertsUrl + '&status=1' + '&auth-email=' + this.authEmail + '&auth-token=' + this.token;
+    return this.http.get<Alerts[]>(url, httpOptions)
+  }
+
+  public dashBrandProduct(brandId: string): Observable<DashboardBrandProduct[]> {
+    const url = this.brandsUrl + '/' + brandId + '/searchCompetitorProducts' + '?auth-email=' +  this.authEmail + '&auth-token=' + this.token;
+    return this.http.get<DashboardBrandProduct[]>(url, httpOptions)
+
+  }
 }

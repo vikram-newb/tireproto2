@@ -1,25 +1,23 @@
-<div>
+<form [formGroup] = "form" (ngSubmit) = "submit(form)">
     <p mat-dialog-title>Add Seller Product</p>
     <p>Please enter detail of seller product</p>
     <mat-form-field>
-        <mat-select placeholder="Product Url*">
-          <mat-option value="option"></mat-option>
-        </mat-select>
-      </mat-form-field>
+        <input matInput placeholder="Product Url*" fromControlName = "Url">
+    </mat-form-field>
       <div style="display:flex; flex-direction:row;">
       <mat-form-field style = "margin-right:15px;">
-        <mat-select placeholder="Brand*">
-          <mat-option value="option" *ngFor= 'let item of brands'>{{item.brands}}</mat-option>
+        <mat-select placeholder="Brand*" formControlName = "BrandId">
+          <mat-option  *ngFor= 'let item of brandArray' [value] = "item">{{item.name}}</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field >
-        <mat-select placeholder="Seller*">
-          <mat-option value="option" >Option</mat-option>
+        <mat-select placeholder="Seller*" formControlName = "competitorId">
+          <mat-option *ngFor = "let item of sellerArray" [value] = "item">{{item.name}}</mat-option>
         </mat-select>
       </mat-form-field>
       </div>
       <div style="display: flex;flex-direction: row;justify-content:flex-end;">
       <button mat-raised-button color="primary" style="margin-right: 15px;">ADD</button>
-      <button mat-raised-button >CANCEL</button>
+      <button mat-raised-button mat-dialog-close>CANCEL</button>
       </div>
-    </div>
+    </form>

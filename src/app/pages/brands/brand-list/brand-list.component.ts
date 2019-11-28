@@ -22,7 +22,6 @@ export class BrandListComponent implements OnInit {
   ngOnInit() {
     this.getBrands();
   }
-
   getBrands() {
     this.brandService.getBrands().subscribe(data => this.brands = data);
     // getBrands().subscribe(brands => (this.brands = brands));
@@ -31,7 +30,8 @@ export class BrandListComponent implements OnInit {
   delete(brand: Brand) {
     event.preventDefault();
     this.brands = this.brands.filter(b => b !== brand);
-    // this.brandService.deleteBrand(brand.id).subscribe();
+    console.log(brand.id);
+    this.brandService.deleteBrand(brand.id).subscribe();
   }
 
   edit(brand: Brand) {
@@ -47,9 +47,8 @@ export class BrandListComponent implements OnInit {
     brandRef.afterClosed().pipe(
     filter(name => name)
   ).subscribe(result => {
-    console.log('exit');
+      this.brands.push(result);
   });
-
 }
   openAddProduct() {
     const productRef = this.dialog.open(AddProductDiaComponent,

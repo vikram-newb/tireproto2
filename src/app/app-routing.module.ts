@@ -39,7 +39,7 @@ const routes: Routes = [
       loadChildren: () => import('./pages/sellers/sellers.module').then(n => n.SellersModule)
       },
       {
-       data: {title: 'Alerts'},
+       data: {title: 'Price Change Alerts'},
        path: 'alerts',
        component: AlertsComponent
       }

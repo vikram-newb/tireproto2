@@ -29,7 +29,6 @@ export class AddBrandDiaComponent implements OnInit {
   }
 
 submit(form) {
-
   const para = this.form.value.name;
   if ( !para) {
     return false;
@@ -37,7 +36,13 @@ submit(form) {
   const newBrand: any = {
     name : para
   };
-  this.brandService.addBrand(newBrand).subscribe();
-  this.brandRef.close();
+  this.brandService.addBrand(newBrand).subscribe(data => {
+    this.closeDialog(data);
+  });
+}
+closeDialog(data) {
+  this.brandRef.close(data);
 }
 }
+
+
