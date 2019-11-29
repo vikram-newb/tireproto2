@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import {  ActivatedRoute } from '@angular/router';
 import BWT_data from 'src/assets/data/BuyWheelsToday.json';
 import Ifix_data from 'src/assets/data/IFixItZone.json';
+import {SellersService} from '../sellers.service';
+import {SellerProduct} from '../sellerProduct';
 @Component({
   selector: 'app-seller-detail',
   templateUrl: './seller-detail.component.html',
@@ -16,12 +18,16 @@ export class SellerDetailComponent implements OnInit {
   public IFixItZone: {id: string, brand: string, quantity: number, price: number, url: string}[] = Ifix_data;
   id: string ;
   displayedColumns: string[] = ['id', 'brand', 'quantity', 'price', 'url'];
-  dataSource1: any;
-  constructor(private route: ActivatedRoute) { }
+  dataSource1: SellerProduct[];
+  constructor(public sellerService: SellersService,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
      this.id = this.route.snapshot.paramMap.get('id');
-     this.dataSource1 = this.id === '13' ? this.BuyWheelsToday : this.IFixItZone;
+     this.sellerService.getCompetitorProduct(this.id).subscribe(data => this.dataSource1 = data);
+     this.sellerService.getCompetitorProduct(this.id).subscribe(data => console.log(data));
+
+    //  this.dataSource1 = this.id === '13' ? this.BuyWheelsToday : this.IFixItZone;
   }
 
 }

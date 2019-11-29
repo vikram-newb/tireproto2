@@ -21,6 +21,7 @@ export class AlertsComponent implements OnInit {
   unreadAlerts: Alerts[];
   dif: any;
   dif2: any;
+  isLoading = true;
   // public All: any = All_data.data;
   // public Read: any = Read_data.data;
   // public Unread: any = Unread_data.data;
@@ -35,12 +36,15 @@ export class AlertsComponent implements OnInit {
     // this.getAlerts();
     this.brandsService.getAlerts().subscribe(resp => {
       this.alerts = resp['data']
+      this.isLoading = false;
     })
     this.brandsService.getUnreadAlerts().subscribe(resp => {
       this.unreadAlerts = resp['data']
+      this.isLoading = false;
     })
     this.brandsService.getreadAlerts().subscribe( resp =>{
       this.readAlerts = resp['data']
+      this.isLoading = false;
     })
   }
 

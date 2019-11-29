@@ -10,7 +10,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SellersModule } from './pages/sellers/sellers.module';
 import { BrandsModule } from './pages/brands/brands.module';
 import { AlertsComponent } from './pages/alerts/alerts.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiService } from './api.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatDialogModule} from '@angular/material/dialog';
@@ -21,6 +21,9 @@ import { AddsellerdialogComponent } from './pages/addsellerdialog/addsellerdialo
 import { AuthGuard } from './auth.guard';
 import { AddBrandDiaComponent} from './pages/add-brand-dia/add-brand-dia.component';
 import { AddProductDiaComponent} from './pages/add-product-dia/add-product-dia.component';
+
+import { UploadCsvComponent } from './pages/upload-csv/upload-csv.component';
+import { ExportCsvComponent } from './pages/export-csv/export-csv.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +35,9 @@ import { AddProductDiaComponent} from './pages/add-product-dia/add-product-dia.c
     AddsellerdialogComponent,
     AddBrandDiaComponent,
     AddProductDiaComponent,
+
+    UploadCsvComponent,
+    ExportCsvComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +53,7 @@ import { AddProductDiaComponent} from './pages/add-product-dia/add-product-dia.c
   ],
   entryComponents: [Dial1Component,
     AddsellerdialogComponent, AddBrandDiaComponent,
-    AddProductDiaComponent,
+    AddProductDiaComponent, UploadCsvComponent, ExportCsvComponent
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

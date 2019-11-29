@@ -6,6 +6,7 @@ import {AddProductDiaComponent} from 'src/app/pages/add-product-dia/add-product-
 import { filter } from 'rxjs/internal/operators';
 import {BrandsService } from '../brands.service';
 import { Brand } from '../brand';
+import { UploadCsvComponent } from '../../upload-csv/upload-csv.component';
 @Component({
   selector: 'app-brand-list',
   templateUrl: './brand-list.component.html',
@@ -16,6 +17,7 @@ export class BrandListComponent implements OnInit {
   // public Brand: {id: string, name: string}[] = brand_data;
   // brand: any;
   brands: Brand[];
+  isLoading = true;
   editBrand: Brand; // the brand currently being edited
   constructor(public dialog: MatDialog, private brandService: BrandsService) { }
 
@@ -23,7 +25,11 @@ export class BrandListComponent implements OnInit {
     this.getBrands();
   }
   getBrands() {
-    this.brandService.getBrands().subscribe(data => this.brands = data);
+    this.brandService.getBrands().subscribe(data =>{
+      this.brands = data
+      this.isLoading = false;
+    });
+    
     // getBrands().subscribe(brands => (this.brands = brands));
   }
 
@@ -61,5 +67,15 @@ export class BrandListComponent implements OnInit {
       ).subscribe(result => {
         console.log('exit');
       });
+  }
+
+  openUploadProduct() {
+    const uploadRef =this.dialog.open(UploadCsvComponent,{
+      width:'346.7px',
+      height: '253px'
+    });
+    uploadRef.afterClosed().pipe().subscribe(result =>{
+      console.log('exit');
+    });
   }
 }

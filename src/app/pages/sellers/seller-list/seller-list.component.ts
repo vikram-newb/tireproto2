@@ -20,6 +20,7 @@ export class SellerListComponent implements OnInit {
   // seller: any;
   sellers: Seller[];
   editSeller: Seller;
+  isLoading = true;
   constructor(public dialog: MatDialog, private sellerService: SellersService) { }
 
   ngOnInit() {
@@ -27,13 +28,23 @@ export class SellerListComponent implements OnInit {
   }
 
   getCompetitors() {
-    this.sellerService.getCompetitors().subscribe(data => this.sellers = data);
+    this.sellerService.getCompetitors().subscribe(data =>{
+      this.sellers = data
+      this.isLoading = false;
+    });
   }
 
-  // delete(seller: Seller) {
-  //   this.sellers = this.sellers.filter(s => s !== seller);
-  //   this.sellerService.deleteBrand(seller.id).subscribe();
-  // }
+  deleteSeller(seller: Seller) {
+    event.preventDefault();
+    this.sellers = this.sellers.filter(s => s !== seller);
+    console.log(seller.id);
+    this.sellerService.deleteCompetitor(seller.id).subscribe();
+  }
+
+  gotoStore(seller: Seller){
+    event.preventDefault();
+    window.location.assign(seller.url);
+  }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(Dial1Component,

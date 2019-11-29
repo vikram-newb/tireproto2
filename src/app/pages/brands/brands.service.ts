@@ -17,7 +17,9 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class BrandsService {
-  brandsUrl = 'http://18.191.108.43:8000/api/brands';
+  brandsUrl = 'http://18.191.108.43:8000/api/brands?q-order=asc-name&q-expand=true';
+  brandsUrl2 = 'http://18.191.108.43:8000/api/brands';
+
   BrandProductsUrl = 'http://18.191.108.43:8000/api/brandProducts';
   viewAllProductsUrl = 'http://18.191.108.43:8000/api/brands';
   alertsUrl = 'http://18.191.108.43:8000/api/alert?q-expand=true&q-limit=100&q-offset=0&q-order=desc-created';
@@ -29,18 +31,25 @@ export class BrandsService {
 
   public getBrands(): Observable<Brand[]> {
 
-    const url = this.brandsUrl + '?auth-email=' + this.authEmail + '&auth-token=' + this.token;
+    const url = this.brandsUrl + '&auth-email=' + this.authEmail + '&auth-token=' + this.token;
     return this.http.get<Brand[]>(url);
   }
 
+  public getBrands2(): Observable<Brand[]> {
+
+    const url = this.brandsUrl2 + '?auth-email=' + this.authEmail + '&auth-token=' + this.token;
+    return this.http.get<Brand[]>(url);
+  }
+
+
   public addBrand( name: Brand): Observable<Brand> {
-    const url = this.brandsUrl + '?auth-email=' + this.authEmail + '&auth-token=' + this.token;
+    const url = this.brandsUrl + '&auth-email=' + this.authEmail + '&auth-token=' + this.token;
     return this.http.post<Brand>(url, name, httpOptions);
   }
 
   public deleteBrand(brandId: number): Observable<{}> {
     // const url = `${this.brandsUrl}/${id}`;
-    const url = this.brandsUrl + '/' + brandId + '?auth-email=' + this.authEmail + '&auth-token=' + this.token;
+    const url = this.brandsUrl2 + '/' + brandId + '?auth-email=' + this.authEmail + '&auth-token=' + this.token;
     return this.http.delete(url, httpOptions);
   }
 
@@ -75,7 +84,7 @@ export class BrandsService {
   }
 
   public dashBrandProduct(brandId: string): Observable<DashboardBrandProduct[]> {
-    const url = this.brandsUrl + '/' + brandId + '/searchCompetitorProducts' + '?auth-email=' +  this.authEmail + '&auth-token=' + this.token;
+    const url = this.brandsUrl2 + '/' + brandId + '/searchCompetitorProducts' + '?auth-email=' +  this.authEmail + '&auth-token=' + this.token;
     return this.http.get<DashboardBrandProduct[]>(url, httpOptions)
 
   }

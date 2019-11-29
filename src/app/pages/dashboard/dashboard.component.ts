@@ -7,6 +7,7 @@ import { BrandsService } from '../brands/brands.service';
 import { SellersService } from '../sellers/sellers.service';
 import { DashboardBrandProduct } from './dashboardBrandProduct';
 import { Brand } from '../brands/brand';
+import { of } from 'rxjs';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class DashboardComponent implements OnInit {
   brandArray = [];
   brandId = '11';
   isToggled = false;
+  isLoading = true;
   dashArray: DashboardBrandProduct[];
   // public Thunderer: any = Thunderer_db.RowData;
   // public LionHart: any = LionHart_db.RowData;
@@ -43,29 +45,29 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.brandservice.getBrands().subscribe(resp =>{
+    this.brandservice.getBrands2().subscribe(resp =>{
       this.brandArray = [...resp];
     });
 
     this.form = this.formBuilder.group({
       brand : [null, []]
     });
-    console.log(this.form.value)
+    // console.log(this.form.value)
     // this.form.valueChanges.subscribe(value => console.log(value.brand.id));
     this.form.get('brand').valueChanges.subscribe(value => { 
       this.getDashBrand(value.id)
     });
+    console.log(this.isLoading)
+    
   }
 
 getDashBrand(id: string) {
   this.brandservice.dashBrandProduct(id).subscribe(resp => {
     this.dashArray = resp['RowData']
+    console.log(this.dashArray)
+    this.isLoading = false;
   });
-}
+
+  }
 }
 
-// onChange() {
-//   this.brand.valueChanges.subscribe(_ => {
-//     console.log(_)
-//   })
-// }

@@ -2,7 +2,7 @@
     <div>
         <form [formGroup]="form">
         <mat-form-field>
-            <mat-select placeholder="Choose anotherr brand" formControlName="brand" required>
+            <mat-select placeholder="Choose another brand" formControlName="brand" required>
                 <mat-option *ngFor="let item of brandArray" [value]="item">
                     {{item.name}}</mat-option>
             </mat-select>
@@ -13,10 +13,7 @@
         <button mat-raised-button color="primary" style="margin-right: 15px;">EXPORT AS CSV</button>
         <mat-slide-toggle color="primary" (toggleChange) = "modifyTable()">Compare</mat-slide-toggle> 
     </div>   
-</div>
- 
-    
-          
+</div>          
           <table mat-table [dataSource]= 'dashArray' style='width:100%; margin-left: 20px;'>
           <ng-container matColumnDef="Sku">
                   <th mat-header-cell *matHeaderCellDef > MPN </th>
@@ -58,4 +55,10 @@
           <tr mat-header-row *matHeaderRowDef="displayedColumns" style="background: #eeeeee;"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
           </table>
+          <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center;">
+            <mat-spinner></mat-spinner> 
+            <!-- <mat-progress-spinner color= "primary" mode="intermediate"></mat-progress-spinner> -->
+          </div>
+        
+              
           

@@ -34,11 +34,21 @@ export class SellersService {
     public addCompetitor(name: Seller): Observable<Seller> {
         const url = this.sellersUrl2 + '?auth-email=' + this.authEmail + '&auth-token=' + this.token;
         return this.http.post<Seller>(url, name, httpOptions);
+ }
+
+    public deleteCompetitor(sellerId: number): Observable<{}> {
+        const url = this.sellersUrl2 + '/' + sellerId + '?auth-email=' + this.authEmail + '&auth-token=' + this.token;
+        return this.http.delete(url, httpOptions);
     }
 
     public addCompetitorProduct(competitorId): Observable<SellerProduct> {
         const url = this.sellerProductUrl + '?auth-email=' + this.authEmail + '&auth-token=' + this.token;
         return this.http.post<SellerProduct>(url,competitorId, httpOptions);
+    }
+
+    public getCompetitorProduct(competitorId): Observable<SellerProduct[]> {
+        const url = this.sellerProductUrl + '?competitorId=' + competitorId + '&q-expand=true&q-order=asc-skuID&auth-email=' + this.authEmail + '&auth-token=' + this.token;
+        return this.http.get<SellerProduct[]>(url, httpOptions);
     }
 
 }

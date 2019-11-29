@@ -1,5 +1,5 @@
 <div class="btnflex">
-        <button mat-raised-button color="primary" style="margin-right:20px">UPLOAD CSV</button>
+        <button (click) = "openUploadProduct()" mat-raised-button color="primary" style="margin-right:20px">UPLOAD CSV</button>
         <button (click) = "openAddProduct()" mat-raised-button color="primary" style="margin-right:20px">ADD PRODUCT</button>
         <button (click) = "openAddBrand()" mat-raised-button color="primary" style="margin-right:20px">ADD BRAND</button>
         </div>
@@ -15,12 +15,21 @@
                             <span matSuffix class="textStyle">{{brand.name}}</span>
                         </div>
                         <div>
-                            <button (click) = "delete(brand)" mat-button><mat-icon>delete_forever</mat-icon></button>
+                            <div style="display:inline-flex">{{brand.numberOfProducts}} products
+                                <span><mat-icon>arrow_forward_ios</mat-icon></span>
+                            </div>
+                            
+                            <button matTooltip="Delete Brand" (click) = "delete(brand)" mat-button><mat-icon>delete_forever</mat-icon></button>
                         </div>
                     </a>
                     
                 </mat-nav-list>
+                <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center;">
+                        <mat-spinner></mat-spinner>
+                </div>
             
             </mat-card-content>
+
         </mat-card>
+        
         
