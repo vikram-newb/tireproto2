@@ -7,10 +7,13 @@ import { filter } from 'rxjs/internal/operators';
 import {BrandsService } from '../brands.service';
 import { Brand } from '../brand';
 import { UploadCsvComponent } from '../../upload-csv/upload-csv.component';
+import {ViewEncapsulation} from '@angular/core';
+
 @Component({
   selector: 'app-brand-list',
   templateUrl: './brand-list.component.html',
-  styleUrls: ['./brand-list.component.css']
+  styleUrls: ['./brand-list.component.css'],
+  encapsulation: ViewEncapsulation.None 
 })
 export class BrandListComponent implements OnInit {
 
@@ -48,7 +51,7 @@ export class BrandListComponent implements OnInit {
     const brandRef = this.dialog.open(AddBrandDiaComponent,
       {
        width: '303.28px',
-       height: '226px',
+      //  height: '226px',
      });
     brandRef.afterClosed().pipe(
     filter(name => name)
@@ -60,7 +63,7 @@ export class BrandListComponent implements OnInit {
     const productRef = this.dialog.open(AddProductDiaComponent,
       {
         width: '510px',
-        height: '346px',
+        // height: '346px',
       });
     productRef.afterClosed().pipe(
       filter(brandId => brandId)
@@ -72,7 +75,7 @@ export class BrandListComponent implements OnInit {
   openUploadProduct() {
     const uploadRef =this.dialog.open(UploadCsvComponent,{
       width:'346.7px',
-      height: '253px'
+      // height: '253px'
     });
     uploadRef.afterClosed().pipe().subscribe(result =>{
       console.log('exit');

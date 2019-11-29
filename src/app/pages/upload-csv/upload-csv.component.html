@@ -1,21 +1,19 @@
-<form>
+<form [formGroup] = "form" >
     <p mat-dialog-title>Upload Product's csv</p>
     <mat-form-field>
-        <mat-select placeholder="Brand" formControlName="brand">
+        <mat-select placeholder="Brand" formControlName="brand" required>
             <mat-option *ngFor="let item of brandArray" [value]="item">{{item.name}}</mat-option>
         </mat-select><br>
     </mat-form-field>
-</form>
-    <mat-dialog-content>
-        <button mat-button color="primary" (click)="onClick()">
-            <span style="margin-right:15px;">Choose File</span><span>No file Chosen</span>
-         </button><br/>
-         <input type="file" id="fileUpload" name="fileUpload" multiple="multiple" accept="{{accept}}" style="display:none;"/>
+        
+        <input type="file" id="fileUpload" name="profile" accept=".csv" (change)="onFileSelect($event)" #file>
+        
+
          <mat-dialog-actions>
                 <div style="display: flex; flex-direction: row; justify-content: flex-end;">
                     <button mat-raised-button mat-dialog-close>Cancel</button>
-                    <button mat-button-type="submit" mat-raised-button color="primary" style="margin-right: 15px;;">UPLOAD</button>
-
+                    <button (click)="onUpload()" mat-raised-button color="primary" style="margin-right: 15px;;">UPLOAD</button>
+                    
                 </div>
          </mat-dialog-actions>
-    </mat-dialog-content>
+</form>

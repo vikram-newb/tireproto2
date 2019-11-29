@@ -1,1 +1,15 @@
-<p>export-csv works!</p>
+<form [formGroup] = "form">
+    <p mat-dialog-title >Export CSV</p>
+    <p>Please select sellers from the dropdown to be exported:</p>
+    <mat-form-field>
+        <mat-select placeholder = "Seller" formControlName= "seller" required>
+            <mat-option *ngFor = "let item of sellerArray" [value]="item">{{item.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-dialog-actions>
+            <div style="display: flex; flex-direction: row; justify-content: flex-end;">
+                <button (click) = "downloadCSV()" mat-button-type="submit" mat-raised-button color="primary" style="margin-right: 15px;;">EXPORT</button>
+                <button mat-raised-button mat-dialog-close>Cancel</button>
+            </div>
+    </mat-dialog-actions>
+</form>

@@ -8,6 +8,9 @@ import { SellersService } from '../sellers/sellers.service';
 import { DashboardBrandProduct } from './dashboardBrandProduct';
 import { Brand } from '../brands/brand';
 import { of } from 'rxjs';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { ExportCsvComponent } from 'src/app/pages/export-csv/export-csv.component';
+
 
 
 @Component({
@@ -32,7 +35,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(public brandservice: BrandsService,
               public sellerService: SellersService,
-              public formBuilder: FormBuilder) { }
+              public formBuilder: FormBuilder,
+              public dialog: MatDialog) { }
 
   
   modifyTable() {
@@ -60,6 +64,16 @@ export class DashboardComponent implements OnInit {
     console.log(this.isLoading)
     
   }
+
+exportAsCsv(){
+  const exportCsvRef = this.dialog.open(ExportCsvComponent, {
+    width: '482.29px',
+    // height: '217px'
+  });
+  exportCsvRef.afterClosed().pipe().subscribe(result =>{
+    console.log('exit');
+  });
+}
 
 getDashBrand(id: string) {
   this.brandservice.dashBrandProduct(id).subscribe(resp => {

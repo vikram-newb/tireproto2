@@ -7,12 +7,14 @@ import { MatIcon } from '@angular/material';
 import { filter } from 'rxjs/internal/operators';
 import { SellersService } from '../sellers.service';
 import { Seller } from '../seller';
+import {ViewEncapsulation} from '@angular/core';
 
 
 @Component({
   selector: 'app-seller-list',
   templateUrl: './seller-list.component.html',
-  styleUrls: ['./seller-list.component.css']
+  styleUrls: ['./seller-list.component.css'],
+  encapsulation: ViewEncapsulation.None 
 })
 export class SellerListComponent implements OnInit {
 
@@ -49,7 +51,7 @@ export class SellerListComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(Dial1Component,
        {width: '486px',
-        height: '290px',
+        // height: '290px',
       });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
@@ -59,7 +61,7 @@ export class SellerListComponent implements OnInit {
     const addsellerdialogRef = this.dialog.open(AddsellerdialogComponent,
       {
         width: '380px',
-        height: '259px',
+        // height: '259px',  
       });
     addsellerdialogRef.afterClosed().pipe(
       filter(name => name)

@@ -3,7 +3,7 @@
     <button (click)='addsellerDialog()' mat-raised-button color="primary" style="margin-right:20px">ADD SELLER</button>
 </div>
 
-<mat-card style="margin:auto 15px;" >
+<mat-card style="margin:auto 15px;width:95%;" >
     <mat-card-content>
         <mat-nav-list>
             <a mat-list-item *ngFor="let seller of sellers" [routerLink]="[seller.id]">

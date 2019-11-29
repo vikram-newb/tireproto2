@@ -25,7 +25,7 @@ export class SellerDetailComponent implements OnInit {
   ngOnInit() {
      this.id = this.route.snapshot.paramMap.get('id');
      this.sellerService.getCompetitorProduct(this.id).subscribe(data => this.dataSource1 = data);
-     this.sellerService.getCompetitorProduct(this.id).subscribe(data => console.log(data));
+       this.sellerService.getCompetitorProduct(this.id).subscribe(data => console.log(data));
 
     //  this.dataSource1 = this.id === '13' ? this.BuyWheelsToday : this.IFixItZone;
   }

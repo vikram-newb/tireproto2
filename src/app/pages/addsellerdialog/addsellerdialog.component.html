@@ -1,10 +1,10 @@
 <form [formGroup]="form" (ngSubmit)="submit(form)">
    <h1 mat-dialog-title>Add Seller </h1>
    <mat-dialog-content>
-       <mat-form-field>
+       <mat-form-field style="width:100%">
            <input matInput placeholder="Name*" formControlName="name" >
        </mat-form-field>
-       <mat-form-field>
+       <mat-form-field style="width:100%">
            <input matInput placeholder= "Store Link (optional)" formControlName="url" >
        </mat-form-field>
        <mat-dialog-actions>

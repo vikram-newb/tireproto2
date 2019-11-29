@@ -27,3 +27,7 @@
     
     text-align: left;
 }
+.mat-dialog-actions {
+    padding: 0px !important;
+    margin-bottom: 0px !important;
+}

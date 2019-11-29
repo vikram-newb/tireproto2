@@ -23,7 +23,7 @@ export class BrandsService {
   BrandProductsUrl = 'http://18.191.108.43:8000/api/brandProducts';
   viewAllProductsUrl = 'http://18.191.108.43:8000/api/brands';
   alertsUrl = 'http://18.191.108.43:8000/api/alert?q-expand=true&q-limit=100&q-offset=0&q-order=desc-created';
-
+  downloadUrl = 'http://18.191.108.43:8000/api/export';
 
   constructor(private http: HttpClient) { }
   authEmail = localStorage.getItem('authEmail');
@@ -87,5 +87,22 @@ export class BrandsService {
     const url = this.brandsUrl2 + '/' + brandId + '/searchCompetitorProducts' + '?auth-email=' +  this.authEmail + '&auth-token=' + this.token;
     return this.http.get<DashboardBrandProduct[]>(url, httpOptions)
 
+  }
+
+  public uploadCsv(brandId: string,formData: FormData): Observable<BrandProduct[]> {
+    const headers = {
+      headers: new HttpHeaders({
+        'Content-Type': 'multipart/form-data; boundary: ----WebKitFormBoundaryyrV7KO0BoCBuDbTL',
+        // ''
+      })
+      
+    }
+    const url = this.brandsUrl2 + '/' + brandId + '/upload' + '?auth-email=' + this.authEmail + '&auth-token=' + this.token;
+    return this.http.post<BrandProduct[]>(url,formData);
+  }
+
+  public exportCSV(body:any): Observable<DashboardBrandProduct[]>{
+    const url = this.downloadUrl +'?auth-email=' + this.authEmail + '&auth-token=' + this.token;
+    return this.http.post<any>(url, body);
   }
 }
