@@ -19,3 +19,6 @@
 .f18{
     font-size:18px;
 }
+.selectedDiv {
+    opacity: 0.2;
+}

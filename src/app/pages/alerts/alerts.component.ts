@@ -3,6 +3,7 @@ import { filter } from 'rxjs/internal/operators';
 import { BrandsService } from '../brands/brands.service';
 import { SellersService } from '../sellers/sellers.service';
 import { Alerts } from './alerts';
+import { style } from '@angular/animations';
 
 
 // import All_data from 'src/assets/data/alerts_all.json';
@@ -34,6 +35,7 @@ export class AlertsComponent implements OnInit {
   
   ngOnInit() {
     // this.getAlerts();
+    
     this.brandsService.getAlerts().subscribe(resp => {
       this.alerts = resp['data']
       this.isLoading = false;
@@ -47,6 +49,25 @@ export class AlertsComponent implements OnInit {
       this.isLoading = false;
     })
   }
+
+  changeStatus(id){ 
+    this.brandsService.markReadAlert(id).subscribe(resp =>{
+      this.readAlerts.push(this.unreadAlerts.find(data => data.id === id))
+      this.unreadAlerts = this.unreadAlerts.filter(data => data.id !== id)
+    })
+  }
+  changeStatusAll(id){
+    this.alerts.forEach(data => {
+      if(data.id == id && data.statusChangeBy == 0)
+        data.statusChangeBy = -1
+    })
+    this.brandsService.markReadAlert(id).subscribe(resp =>{
+      this.readAlerts.push(this.alerts.find(data=> data.id ===id))
+    })
+    
+  }
+
+
 
   
 }

@@ -22,6 +22,7 @@ export class BrandsService {
 
   BrandProductsUrl = 'http://18.191.108.43:8000/api/brandProducts';
   viewAllProductsUrl = 'http://18.191.108.43:8000/api/brands';
+  markReadUrl = 'http://18.191.108.43:8000/api/alert/';
   alertsUrl = 'http://18.191.108.43:8000/api/alert?q-expand=true&q-limit=100&q-offset=0&q-order=desc-created';
   downloadUrl = 'http://18.191.108.43:8000/api/export';
 
@@ -75,34 +76,39 @@ export class BrandsService {
 
   public getUnreadAlerts(): Observable<Alerts[]> {
     const url = this.alertsUrl + '&status=0' + '&auth-email=' + this.authEmail + '&auth-token=' + this.token;
-    return this.http.get<Alerts[]>(url, httpOptions)
+    return this.http.get<Alerts[]>(url, httpOptions);
   }
 
   public getreadAlerts(): Observable<Alerts[]> {
     const url = this.alertsUrl + '&status=1' + '&auth-email=' + this.authEmail + '&auth-token=' + this.token;
-    return this.http.get<Alerts[]>(url, httpOptions)
+    return this.http.get<Alerts[]>(url, httpOptions);
   }
 
   public dashBrandProduct(brandId: string): Observable<DashboardBrandProduct[]> {
+    // tslint:disable-next-line:max-line-length
     const url = this.brandsUrl2 + '/' + brandId + '/searchCompetitorProducts' + '?auth-email=' +  this.authEmail + '&auth-token=' + this.token;
-    return this.http.get<DashboardBrandProduct[]>(url, httpOptions)
+    return this.http.get<DashboardBrandProduct[]>(url, httpOptions);
 
   }
 
-  public uploadCsv(brandId: string,formData: FormData): Observable<BrandProduct[]> {
+  public uploadCsv(brandId: string, formData: FormData): Observable<BrandProduct[]> {
     const headers = {
       headers: new HttpHeaders({
         'Content-Type': 'multipart/form-data; boundary: ----WebKitFormBoundaryyrV7KO0BoCBuDbTL',
         // ''
       })
-      
-    }
+    };
     const url = this.brandsUrl2 + '/' + brandId + '/upload' + '?auth-email=' + this.authEmail + '&auth-token=' + this.token;
-    return this.http.post<BrandProduct[]>(url,formData);
+    return this.http.post<BrandProduct[]>(url, formData);
   }
 
-  public exportCSV(body:any): Observable<DashboardBrandProduct[]>{
-    const url = this.downloadUrl +'?auth-email=' + this.authEmail + '&auth-token=' + this.token;
+  public exportCSV(body: any): Observable<DashboardBrandProduct[]> {
+    const url = this.downloadUrl + '?auth-email=' + this.authEmail + '&auth-token=' + this.token;
     return this.http.post<any>(url, body);
+  }
+
+  public markReadAlert(id: number): Observable<Alerts[]>{
+    const url = this.markReadUrl + id + '/mark_read?auth-email=' + this.authEmail + '&auth-token=' + this.token;
+    return this.http.put<any>(url, id)
   }
 }

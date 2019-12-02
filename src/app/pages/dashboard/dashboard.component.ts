@@ -19,26 +19,25 @@ import { ExportCsvComponent } from 'src/app/pages/export-csv/export-csv.componen
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  
   form: FormGroup;
   brand = [];
   brandArray = [];
   brandId = '11';
   isToggled = false;
   isLoading = true;
+  selected: string; 
   dashArray: DashboardBrandProduct[];
   // public Thunderer: any = Thunderer_db.RowData;
   // public LionHart: any = LionHart_db.RowData;
   // public brands: {id: number, name: string}[] = brands_db;
   displayedColumns: string[] = ['Sku', 'ProductName', 'OurPrice', 'Quantity', 'SellerPrice', 'SellerSold'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
-  
-
   constructor(public brandservice: BrandsService,
               public sellerService: SellersService,
               public formBuilder: FormBuilder,
               public dialog: MatDialog) { }
 
-  
   modifyTable() {
     this.isToggled = !this.isToggled;
     if (this.isToggled) {
@@ -49,8 +48,9 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.brandservice.getBrands2().subscribe(resp =>{
+    this.brandservice.getBrands2().subscribe(resp => {
       this.brandArray = [...resp];
+      console.log(resp);
     });
 
     this.form = this.formBuilder.group({
@@ -58,27 +58,30 @@ export class DashboardComponent implements OnInit {
     });
     // console.log(this.form.value)
     // this.form.valueChanges.subscribe(value => console.log(value.brand.id));
-    this.form.get('brand').valueChanges.subscribe(value => { 
-      this.getDashBrand(value.id)
-    });
-    console.log(this.isLoading)
+   
+    this.getDashBrand('11');
+    this.selected = "Thunderer trac grip"
     
+    this.form.get('brand').valueChanges.subscribe(value => {
+      this.getDashBrand(value.id);
+    });
+    console.log(this.isLoading);
   }
 
-exportAsCsv(){
+exportAsCsv() {
   const exportCsvRef = this.dialog.open(ExportCsvComponent, {
     width: '482.29px',
     // height: '217px'
   });
-  exportCsvRef.afterClosed().pipe().subscribe(result =>{
+  exportCsvRef.afterClosed().pipe().subscribe(result => {
     console.log('exit');
   });
 }
 
 getDashBrand(id: string) {
   this.brandservice.dashBrandProduct(id).subscribe(resp => {
-    this.dashArray = resp['RowData']
-    console.log(this.dashArray)
+    this.dashArray = resp['RowData'];
+    console.log(this.dashArray);
     this.isLoading = false;
   });
 

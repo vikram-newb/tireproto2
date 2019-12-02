@@ -3,8 +3,8 @@
         <mat-tab label="All" style="font-size:14px;">
             <mat-card style="width:98%">
                 <mat-nav-list role="list">
-                        <mat-list-item role="listitem">
-                            <div class="head_container">
+                        <mat-list-item role="listitem" style="background-color: #ccceeb;">
+                            <div class="head_container" >
                                 <div>
                                     <span><mat-icon style = "border-radius: 50%; background:#eeeeee;">import_export</mat-icon></span>
                                     <span style="width: 200px; font: 18px;">&nbsp; MPN No. (Brand Name) &nbsp;</span>
@@ -21,9 +21,9 @@
                             </div>
 
                         </mat-list-item>
-                        <mat-list-item role="listitem" *ngFor="let entry of alerts">
-                                <div class="head_container">
-                                    <div>
+                        <mat-list-item role="listitem"  *ngFor="let entry of alerts" (click)="changeStatusAll(entry.id)">
+                                <div class="head_container" [ngStyle]="{'opacity' : entry.statusChangeBy === -1 ? 0.6 : 1}">
+                                    <div>   
                                         <span><mat-icon *ngIf="entry.newPrice - entry.oldPrice > 0; else downward" style="background:green; border-radius: 50%; color:white;">arrow_upward</mat-icon></span>
                                         <ng-template #downward>
                                                 <span><mat-icon style="background:red; border-radius: 50%; color:white;">arrow_downward</mat-icon></span>
@@ -42,6 +42,7 @@
                                         <mat-divider></mat-divider>
                                     </div>
                                 </div>
+
                             </mat-list-item>
                             <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center;">
                                 <mat-spinner></mat-spinner>
@@ -53,7 +54,7 @@
         <mat-tab label="Unread">
                 <mat-card>
                 <mat-nav-list role="list">
-                        <mat-list-item role="listitem">
+                        <mat-list-item role="listitem" style="background-color: #ccceeb;">
                             <div class="head_container">
                                 <div>
                                     <span><mat-icon style = "border-radius: 50%; background:#eeeeee;">import_export</mat-icon></span>
@@ -70,7 +71,7 @@
                             </div>
 
                         </mat-list-item>
-                        <mat-list-item role="listitem" *ngFor="let wryyy of unreadAlerts">
+                        <mat-list-item role="listitem" *ngFor="let wryyy of unreadAlerts" (click) = "changeStatus(wryyy.id)">
                                 <div class="head_container">
                                         <div>
                                             <span><mat-icon *ngIf="wryyy.newPrice - wryyy.oldPrice > 0; else downward" class="circleUp-icon">arrow_upward</mat-icon></span>
@@ -103,7 +104,7 @@
         <mat-tab label="Read">
                 <mat-card style="width:98%">
                 <mat-nav-list role="list">
-                        <mat-list-item role="listitem">
+                        <mat-list-item role="listitem" style="background-color: #ccceeb;">
                             <div class="head_container">
                                 <div>
                                     <span><mat-icon style = "border-radius: 50%; background:#eeeeee;">import_export</mat-icon></span>
@@ -120,7 +121,7 @@
                             </div>
 
                         </mat-list-item>
-                        <mat-list-item role="listitem" *ngFor="let flag of readAlerts">
+                        <mat-list-item role="listitem" *ngFor="let flag of readAlerts" style="opacity: .6;">
                                 <div class="head_container">
                                         <div>
                                             <span><mat-icon *ngIf="flag.newPrice - flag.oldPrice > 0; else downward" style="background:green; border-radius: 50%; color:white;">arrow_upward</mat-icon></span>

@@ -13,14 +13,13 @@ export class UploadCsvComponent implements OnInit {
   brand: Brand[];
   brandArray = [];
   form: FormGroup;
-  
+
   constructor(public brandsService: BrandsService,
-              public formBuilder: FormBuilder,        
-              public productRef: MatDialogRef<UploadCsvComponent>) 
-              { 
+              public formBuilder: FormBuilder,
+              public uploadRef: MatDialogRef<UploadCsvComponent>) { 
                 this.form = this.formBuilder.group({
-                  brand: [null,[]],
-                  profile: [' '] 
+                  brand: [null, []],
+                  profile: [' ']
                 });
               }
 
@@ -28,9 +27,9 @@ export class UploadCsvComponent implements OnInit {
     this.brandsService.getBrands2().subscribe( resp =>{
       this.brandArray = [...resp];
       console.log(resp);
-      
+
     });
-        
+
     this.form.get('brand').valueChanges.subscribe(value => {
       this.brandId = value.id;
       console.log(this.brandId);
@@ -49,8 +48,11 @@ export class UploadCsvComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', this.form.get('profile').value);
     this.brandsService.uploadCsv(this.brandId,formData).subscribe(resp => {
-      console.log(resp);
-    })
+      this.closeDialog(resp);
+    });
     // this.brandsService.uploadCsv().subscribe();
+  }
+  closeDialog(resp){
+    this.uploadRef.close(resp);
   }
 }

@@ -2,7 +2,7 @@
     <div>
         <form [formGroup]="form">
         <mat-form-field>
-            <mat-select placeholder="Choose another brand" formControlName="brand" required>
+            <mat-select placeholder="Choose another brand" [(value)] = "selected" formControlName= "brand"  required>
                 <mat-option *ngFor="let item of brandArray" [value]="item">
                     {{item.name}}</mat-option>
             </mat-select>
@@ -14,7 +14,7 @@
         <mat-slide-toggle color="primary" (toggleChange) = "modifyTable()">Compare</mat-slide-toggle> 
     </div>   
 </div>          
-          <table mat-table [dataSource]= 'dashArray' style='width:96%; margin-left: 20px;'>
+          <table mat-table [dataSource]= 'dashArray' style='width:96%; margin-left: 20px;margin-bottom: 15px;'>
           <ng-container matColumnDef="Sku">
                   <th mat-header-cell *matHeaderCellDef > MPN </th>
                   <td mat-cell *matCellDef="let element"> {{element.Sku}} </td>
@@ -34,7 +34,7 @@
               <td mat-cell *matCellDef="let element" class="includePartition"> {{element.Quantity}} </td>
           </ng-container>
           <ng-container matColumnDef="SellerPrice">
-              <th mat-header-cell *matHeaderCellDef class="includePartition"> (Price) </th>
+              <th mat-header-cell *matHeaderCellDef class="includePartition"><div>try it</div>(Price) </th>
               <td mat-cell *matCellDef="let element" class="includePartition"> 
                 <ng-container  *ngIf="element.SellerInfo else NA">
                 Rs {{element.SellerInfo[0].SellerPrice}} 
@@ -43,7 +43,7 @@
               </td>
           </ng-container>
           <ng-container matColumnDef="SellerSold">
-              <th mat-header-cell *matHeaderCellDef class="includePartition"> (#Sold) </th>
+              <th mat-header-cell *matHeaderCellDef class="includePartition"><div>try it</div> (#Sold) </th>
               <td mat-cell *matCellDef="let element" class="includePartition"> 
                   <ng-container  *ngIf="element.SellerInfo else NA">
                   Rs {{element.SellerInfo[0].SellerSold}} 
