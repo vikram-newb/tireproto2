@@ -5,6 +5,7 @@ import { BrandsService } from 'src/app/pages/brands/brands.service';
 import { Brand } from '../brands/brand';
 import { BrandProduct } from '../brands/brandProduct';
 import { map } from 'rxjs/operators';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-product-dia',
@@ -19,7 +20,8 @@ export class AddProductDiaComponent implements OnInit {
   id: string;
   constructor(public formBuilder: FormBuilder,
               public brandService: BrandsService ,
-              public productRef: MatDialogRef<AddProductDiaComponent>) { }
+              public productRef: MatDialogRef<AddProductDiaComponent>,
+              private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.brandService.getBrands()
@@ -67,6 +69,9 @@ export class AddProductDiaComponent implements OnInit {
     // this.brandService.createBrandProduct(newProduct).subscribe();
     this.brandService.addProduct(newProduct).subscribe(resp => console.log(resp));
     this.productRef.close();
+    this._snackBar.open('Product Added','Successfully',{
+      duration:2000
+    })
   }
 
 

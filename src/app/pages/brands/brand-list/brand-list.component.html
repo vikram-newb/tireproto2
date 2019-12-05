@@ -1,25 +1,25 @@
 <div class="btnflex">
         <button (click) = "openUploadProduct()" mat-raised-button color="primary" style="margin-right:20px">UPLOAD CSV</button>
         <button (click) = "openAddProduct()" mat-raised-button color="primary" style="margin-right:20px">ADD PRODUCT</button>
-        <button (click) = "openAddBrand()" mat-raised-button color="primary" style="margin-right:20px">ADD BRAND</button>
-        </div>
+        <button (click) = "openAddBrand()" mat-raised-button color="primary" style="margin-right:10px">ADD BRAND</button>
+</div>
         
-        <mat-card style="margin:auto 15px; width:95%">
+        <mat-card style="margin:auto 23px; width:95%">
             <mat-card-content >
                 <mat-nav-list>
                      
-                    <a mat-list-item *ngFor="let brand of brands" [routerLink]="[brand.id]"  >
-                        <div style="display:flex;flex:1;">
+                    <a mat-list-item *ngFor="let brand of brands"  >
+                        <div style="display:flex;flex:1;" [routerLink]="[brand.id]" >
                             <span class="circle-icon">{{brand.name[0]}}</span>
                            
                             <span matSuffix class="textStyle">{{brand.name}}</span>
                         </div>
                         <div>
-                            <div style="display:inline-flex">{{brand.numberOfProducts}} products
-                                <span><mat-icon>arrow_forward_ios</mat-icon></span>
-                            </div>
-                            
-                            <button matTooltip="Delete Brand" (click) = "delete(brand)" mat-button><mat-icon>delete_forever</mat-icon></button>
+                            <div style="display:inline-flex; color:#979797;font-size:14px">{{brand.numberOfProducts}} products
+                                <span><mat-icon style="font-size:20px;color:#979797">arrow_forward_ios</mat-icon></span>
+                            </div>          
+                            <!-- <button matTooltip="Delete Brand" (click) = "delete(brand)" mat-button><mat-icon>delete_forever</mat-icon></button> -->
+                            <button matTooltip="Delete Brand" (click) = "deleteBrandDialog(brand.id)" mat-button><mat-icon style= "color:#979797">delete_forever</mat-icon></button>
                         </div>
                     </a>
                     

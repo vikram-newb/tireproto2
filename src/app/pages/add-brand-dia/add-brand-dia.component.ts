@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import {FormGroup, FormBuilder, FormControl} from '@angular/forms';
+import {MatSnackBar} from '@angular/material/snack-bar';
 // import brands_list from 'src/assets/data/brands_data.json';
 import { BrandsService } from 'src/app/pages/brands/brands.service';
 import { Brand } from '../brands/brand';
@@ -20,7 +21,8 @@ export class AddBrandDiaComponent implements OnInit {
   // public Brands: any = brands_list;
   constructor(public formBuilder: FormBuilder,
               public brandService: BrandsService ,
-              public brandRef: MatDialogRef<AddBrandDiaComponent>) { }
+              public brandRef: MatDialogRef<AddBrandDiaComponent>,
+              private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -38,6 +40,9 @@ submit(form) {
   };
   this.brandService.addBrand(newBrand).subscribe(data => {
     this.closeDialog(data);
+  });
+  this._snackBar.open('Brand Added', 'succesfully',{
+    duration: 2000,
   });
 }
 closeDialog(data) {

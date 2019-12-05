@@ -5,6 +5,8 @@ import { SellersService } from 'src/app/pages/sellers/sellers.service';
 import { BrandsService } from 'src/app/pages/brands/brands.service';
 import { Brand } from '../brands/brand';
 import { Seller } from '../sellers/seller';
+import {MatSnackBar} from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-dial1',
   templateUrl: './dial1.component.html',
@@ -19,7 +21,8 @@ export class Dial1Component implements OnInit {
   constructor( public dialogRef: MatDialogRef<Dial1Component>,
                public sellerService: SellersService,
                public formBuilder: FormBuilder,
-               public brandService: BrandsService) { }
+               public brandService: BrandsService,
+               private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.sellerService.getCompetitors()
@@ -51,5 +54,8 @@ export class Dial1Component implements OnInit {
     }
     this.sellerService.addCompetitorProduct(newLink).subscribe(resp => console.log(resp));
     this.dialogRef.close();
+    this._snackBar.open('Seller Product Added', 'Successfully', {
+      duration:2000,
+    })
   }
 }

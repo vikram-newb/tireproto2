@@ -2,18 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {AddBrandDiaComponent} from 'src/app/pages/add-brand-dia/add-brand-dia.component';
 import {AddProductDiaComponent} from 'src/app/pages/add-product-dia/add-product-dia.component';
+import {DeleteBrandDiaComponent} from 'src/app/pages/delete-brand-dia/delete-brand-dia.component';
 // import brand_data from 'src/assets/data/brands_data.json';
 import { filter } from 'rxjs/internal/operators';
-import {BrandsService } from '../brands.service';
+import { BrandsService } from '../brands.service';
 import { Brand } from '../brand';
 import { UploadCsvComponent } from '../../upload-csv/upload-csv.component';
-import {ViewEncapsulation} from '@angular/core';
+import { ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-brand-list',
   templateUrl: './brand-list.component.html',
   styleUrls: ['./brand-list.component.css'],
-  encapsulation: ViewEncapsulation.None 
+  encapsulation: ViewEncapsulation.None
 })
 export class BrandListComponent implements OnInit {
 
@@ -28,20 +29,19 @@ export class BrandListComponent implements OnInit {
     this.getBrands();
   }
   getBrands() {
-    this.brandService.getBrands().subscribe(data =>{
-      this.brands = data
+    this.brandService.getBrands().subscribe(data => {
+      this.brands = data;
       this.isLoading = false;
     });
-    
     // getBrands().subscribe(brands => (this.brands = brands));
   }
 
-  delete(brand: Brand) {
-    event.preventDefault();
-    this.brands = this.brands.filter(b => b !== brand);
-    console.log(brand.id);
-    this.brandService.deleteBrand(brand.id).subscribe();
-  }
+  // delete(brand: Brand) {
+  //   event.preventDefault();
+  //   this.brands = this.brands.filter(b => b !== brand);
+  //   console.log(brand.id);
+  //   this.brandService.deleteBrand(brand.id).subscribe();
+  // }
 
   edit(brand: Brand) {
     this.editBrand = brand;
@@ -73,12 +73,23 @@ export class BrandListComponent implements OnInit {
   }
 
   openUploadProduct() {
-    const uploadRef =this.dialog.open(UploadCsvComponent,{
-      width:'346.7px',
+    const uploadRef = this.dialog.open(UploadCsvComponent, {
+      width: '346.7px',
       // height: '253px'
     });
-    uploadRef.afterClosed().pipe().subscribe(result =>{
+    uploadRef.afterClosed().pipe().subscribe(result => {
       console.log('exit');
     });
+  }
+
+  deleteBrandDialog(id) {
+    const deleteBrandRef = this.dialog.open(DeleteBrandDiaComponent, {
+      width: '522.75px',
+      data: {id}
+    });
+    deleteBrandRef.afterClosed().pipe().subscribe( result => {
+      console.log('exit', result.id);
+    });
+    this.brands = this.brands.filter(b => b.id !== id);
   }
 }

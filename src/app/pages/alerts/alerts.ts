@@ -1,16 +1,16 @@
 export interface Alerts {
-      id: number,
-      created: number,
-      updated: number,
-      deleted: boolean,
-      modelName: string,
-      competitorLinkId: number,
-      oldPrice: number,
-      oldPriceTime: number,
-      newPrice: number,
-      status: number,
-      statusChangeBy: number,
-      statusChangeTime: number,
+      id: number;
+      created: number;
+      updated: number;
+      deleted: boolean;
+      modelName: string;
+      competitorLinkId: number;
+      oldPrice: number;
+      oldPriceTime: number;
+      newPrice: number;
+      status: number;
+      statusChangeBy: number;
+      statusChangeTime: number;
       competitorLink: {
         id: number,
         created: number,
@@ -26,5 +26,5 @@ export interface Alerts {
         brand: string,
         price: number,
         quantity: string,
-      }
+      };
 }

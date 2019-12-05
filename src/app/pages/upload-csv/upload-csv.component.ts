@@ -33,26 +33,24 @@ export class UploadCsvComponent implements OnInit {
     this.form.get('brand').valueChanges.subscribe(value => {
       this.brandId = value.id;
       console.log(this.brandId);
-    })
-    
+    });
   }
-  onFileSelect(event){
-    if(event.target.files.length > 0)
+  onFileSelect(event) {
+    if (event.target.files.length > 0)
     {
       const file = event.target.files[0];
       this.form.get('profile').setValue(file);
     }
-  }  
-  
-  onUpload(){
+  }
+  onUpload() {
     const formData = new FormData();
     formData.append('file', this.form.get('profile').value);
-    this.brandsService.uploadCsv(this.brandId,formData).subscribe(resp => {
+    this.brandsService.uploadCsv(this.brandId, formData).subscribe(resp => {
       this.closeDialog(resp);
     });
     // this.brandsService.uploadCsv().subscribe();
   }
-  closeDialog(resp){
+  closeDialog(resp) {
     this.uploadRef.close(resp);
   }
 }

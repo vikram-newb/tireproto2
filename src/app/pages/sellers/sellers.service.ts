@@ -47,6 +47,7 @@ export class SellersService {
     }
 
     public getCompetitorProduct(competitorId): Observable<SellerProduct[]> {
+        // tslint:disable-next-line:max-line-length
         const url = this.sellerProductUrl + '?competitorId=' + competitorId + '&q-expand=true&q-order=asc-skuID&auth-email=' + this.authEmail + '&auth-token=' + this.token;
         return this.http.get<SellerProduct[]>(url, httpOptions);
     }

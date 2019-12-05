@@ -6,12 +6,7 @@
 .brandcard{
     margin:auto 15px;    
 }
-.head_container{
-    display:flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width:100%
-}
+
 .circleIcon{
     color:#6d6d6d;
     background: #eeeeee;

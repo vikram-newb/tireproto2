@@ -8,10 +8,8 @@ import { SellersService } from '../sellers/sellers.service';
 import { DashboardBrandProduct } from './dashboardBrandProduct';
 import { Brand } from '../brands/brand';
 import { of } from 'rxjs';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ExportCsvComponent } from 'src/app/pages/export-csv/export-csv.component';
-
-
 
 @Component({
   selector: 'app-dashboard',
@@ -19,14 +17,18 @@ import { ExportCsvComponent } from 'src/app/pages/export-csv/export-csv.componen
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  
+  SellerId: number;
+  numOfSellers: number;
+  sellName = [];
+  finalName: string;
   form: FormGroup;
   brand = [];
   brandArray = [];
-  brandId = '11';
+  sellerArray = [];
+  finalArray = [];
+  SellId: number;
   isToggled = false;
   isLoading = true;
-  selected: string; 
   dashArray: DashboardBrandProduct[];
   // public Thunderer: any = Thunderer_db.RowData;
   // public LionHart: any = LionHart_db.RowData;
@@ -38,53 +40,69 @@ export class DashboardComponent implements OnInit {
               public formBuilder: FormBuilder,
               public dialog: MatDialog) { }
 
-  modifyTable() {
-    this.isToggled = !this.isToggled;
-    if (this.isToggled) {
-      this.displayedColumns = ['Sku', 'ProductName', 'OurPrice', 'Quantity', 'SellerPrice', 'SellerSold'];
-    } else {
-      this.displayedColumns = ['Sku', 'ProductName', 'OurPrice', 'Quantity'];
-    }
-  }
+  
 
   ngOnInit() {
     this.brandservice.getBrands2().subscribe(resp => {
       this.brandArray = [...resp];
-      console.log(resp);
+      // console.log(this.brandArray);
+      this.form.get('brand').setValue(resp[0]);
     });
 
     this.form = this.formBuilder.group({
       brand : [null, []]
     });
-    // console.log(this.form.value)
-    // this.form.valueChanges.subscribe(value => console.log(value.brand.id));
-   
-    this.getDashBrand('11');
-    this.selected = "Thunderer trac grip"
-    
     this.form.get('brand').valueChanges.subscribe(value => {
       this.getDashBrand(value.id);
     });
-    console.log(this.isLoading);
   }
 
 exportAsCsv() {
   const exportCsvRef = this.dialog.open(ExportCsvComponent, {
     width: '482.29px',
-    // height: '217px'
   });
-  exportCsvRef.afterClosed().pipe().subscribe(result => {
-    console.log('exit');
-  });
+  exportCsvRef.afterClosed().pipe().subscribe();
 }
 
 getDashBrand(id: string) {
   this.brandservice.dashBrandProduct(id).subscribe(resp => {
     this.dashArray = resp['RowData'];
-    console.log(this.dashArray);
+    this.sellerArray = this.dashArray.filter(res => res.SellerInfo !== null);
+    this.SellId = this.sellerArray[0].SellerInfo[0].SellerId;
+    this.numOfSellers = this.sellerArray[0].SellerInfo.length;
+    // console.log(this.numOfSellers);
+    // can use array.find;
+    // console.log(this.sellerArray[0].SellerInfo[0].SellerId);
     this.isLoading = false;
+    console.log(this.SellId);
+    this.sellerService.getCompetitors().subscribe( result => {
+      this.sellName = result.filter(item => {
+        if (item.id === this.SellId) {
+          this.finalName = item.name;
+        }
+      });
+    });
+    // const name = this.getSellerName(this.SellerId);
+    // console.log(name)
   });
 
   }
+
+  modifyTable() {
+    this.displayedColumns = ['Sku', 'ProductName', 'OurPrice', 'Quantity'];
+    this.isToggled = !this.isToggled;
+    if (this.isToggled) {
+      while(this.numOfSellers != 0){
+        this.displayedColumns.push('SellerPrice','SellerSold');
+      }
+      // this.displayedColumns = ['Sku', 'ProductName', 'OurPrice', 'Quantity', 'SellerPrice', 'SellerSold'];
+    } else {
+      
+      this.displayedColumns = ['Sku', 'ProductName', 'OurPrice', 'Quantity'];
+    }
+  }
+
+
+
 }
 

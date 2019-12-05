@@ -3,30 +3,34 @@
         <mat-tab label="All" style="font-size:14px;">
             <mat-card style="width:98%">
                 <mat-nav-list role="list">
-                        <mat-list-item role="listitem" style="background-color: #ccceeb;">
+                        <mat-list-item role="listitem" style="background-color: #ccceeb;height:80px;">
                             <div class="head_container" >
-                                <div>
+                                <div style="font-size: 18px;">
                                     <span><mat-icon style = "border-radius: 50%; background:#eeeeee;">import_export</mat-icon></span>
                                     <span style="width: 200px; font: 18px;">&nbsp; MPN No. (Brand Name) &nbsp;</span>
                                     <!-- <span>&nbsp;( Brand Name ) &nbsp;</span> -->
                                     <span>&nbsp;Seller Name &nbsp;</span>
                                 </div>
-                                
-                                <div>
+                                <div style="display: flex;flex-direction: row;">
+                                    <div>
                                     <span>Old Price</span>
-                                    <span><mat-icon>arrow_forward_ios</mat-icon></span>
+                                    </div>
+                                    <span><mat-icon style="font-size:20px">arrow_forward_ios</mat-icon></span>
+
+                                    <div>
                                     <span>New Price</span>
+                                    </div>
                                     <mat-divider></mat-divider>
                                 </div>
                             </div>
 
                         </mat-list-item>
-                        <mat-list-item role="listitem"  *ngFor="let entry of alerts" (click)="changeStatusAll(entry.id)">
+                        <mat-list-item role="listitem"  *ngFor="let entry of alerts" (click)="changeStatusAll(entry.id)" style="height: 80px;">
                                 <div class="head_container" [ngStyle]="{'opacity' : entry.statusChangeBy === -1 ? 0.6 : 1}">
-                                    <div>   
-                                        <span><mat-icon *ngIf="entry.newPrice - entry.oldPrice > 0; else downward" style="background:green; border-radius: 50%; color:white;">arrow_upward</mat-icon></span>
+                                    <div style="display:flex; align-items: center;font-size: 18px;">   
+                                        <span><mat-icon *ngIf="entry.newPrice - entry.oldPrice > 0; else downward" style="background:green; border-radius: 50%; color:white; font-size:24px;">arrow_upward</mat-icon></span>
                                         <ng-template #downward>
-                                                <span><mat-icon style="background:red; border-radius: 50%; color:white;">arrow_downward</mat-icon></span>
+                                                <span><mat-icon style="background:red; border-radius: 50%; color:white; font-size:24px;">arrow_downward</mat-icon></span>
                                         </ng-template>
                                         <span>&nbsp;{{ entry.competitorLink.skuId }}&nbsp;</span>
                                         
@@ -35,10 +39,25 @@
                                         <span *ngIf = "entry.competitorLink.competitorId; else BWT">&nbsp;IFixItZone&nbsp;</span>
                                         <ng-template #BWT><span>&nbsp;Buy Wheels Today&nbsp;</span></ng-template>
                                     </div>
-                                    <div>
-                                        <span>{{entry.oldPrice}}</span>
-                                        <mat-icon>arrow_forward_ios</mat-icon>
-                                        <span>{{entry.newPrice}}</span>
+                                    <div style="display:flex;flex-direction:row;flex:0;align-items: center;">
+                                        <div>
+                                            <div class = "alertBodyMinor">From</div>
+                                            <div style="min-width:48.94px;text-align: center;">{{entry.oldPrice}}</div>
+                                            <div class = "alertBodyMinor">{{convertEpochToDate(entry.oldPriceTime)}}</div>
+                                        </div>
+                                        <div style="text-align: center;">
+                                        <mat-icon style="font-size:20px;margin-bottom:12px;">arrow_forward_ios</mat-icon>
+                                        </div>
+                                        <div style="display:flex;flex-direction:column;">
+                                            <div class = "alertBodyMinor">To</div>
+                                            <div style="min-width:48.94px;text-align: center;">{{entry.newPrice}}</div>
+                                            <div class = "alertBodyMinor" *ngIf="entry.statusChangeTime != 0; else Zero">{{convertEpochToDate(entry.statusChangeTime)}}</div>
+                                            <ng-template #Zero>
+                                                <div class = "alertBodyMinor">{{convertEpochToDate(entry.oldPriceTime)}}</div>
+                                            </ng-template>
+
+                                        </div>
+
                                         <mat-divider></mat-divider>
                                     </div>
                                 </div>
@@ -54,7 +73,7 @@
         <mat-tab label="Unread">
                 <mat-card>
                 <mat-nav-list role="list">
-                        <mat-list-item role="listitem" style="background-color: #ccceeb;">
+                        <mat-list-item role="listitem" style="background-color: #ccceeb;height: 80px;">
                             <div class="head_container">
                                 <div>
                                     <span><mat-icon style = "border-radius: 50%; background:#eeeeee;">import_export</mat-icon></span>
@@ -71,12 +90,12 @@
                             </div>
 
                         </mat-list-item>
-                        <mat-list-item role="listitem" *ngFor="let wryyy of unreadAlerts" (click) = "changeStatus(wryyy.id)">
+                        <mat-list-item role="listitem" *ngFor="let wryyy of unreadAlerts" (click) = "changeStatus(wryyy.id)" style="height: 80px;">
                                 <div class="head_container">
-                                        <div>
+                                        <div style="display:flex; align-items: center;">
                                             <span><mat-icon *ngIf="wryyy.newPrice - wryyy.oldPrice > 0; else downward" class="circleUp-icon">arrow_upward</mat-icon></span>
                                             <ng-template #downward>
-                                                    <span><mat-icon style="background:red; border-radius: 50%; color:white;">arrow_downward</mat-icon></span>
+                                                    <span><mat-icon style="background:red; border-radius: 50%; color:white; font-size:24px;">arrow_downward</mat-icon></span>
                                             </ng-template>
                                             <span>&nbsp;{{ wryyy.competitorLink['skuId'] }}&nbsp;</span>
                                             
@@ -85,10 +104,23 @@
                                             <span *ngIf = "wryyy.competitorLink['competitorId']==12; else BWT">&nbsp;IFixItZone&nbsp;</span>
                                             <ng-template #BWT><span>&nbsp;Buy Wheels Today&nbsp;</span></ng-template>
                                         </div>
-                                        <div>
-                                            <span>{{wryyy.oldPrice}}</span>
-                                            <mat-icon>arrow_forward_ios</mat-icon>
-                                            <span>{{wryyy.newPrice}}</span>
+                                        <div style="display:flex;flex-direction:row;flex:0;align-items: center;">
+                                                <div>
+                                                    <div class = "alertBodyMinor">From</div>
+                                                    <div style="min-width:48.94px;text-align: center;">{{wryyy.oldPrice}}</div>
+                                                    <div class = "alertBodyMinor">{{convertEpochToDate(wryyy.oldPriceTime)}}</div>
+                                                </div>
+                                                <div style="text-align: center;">
+                                                    <mat-icon style="font-size:20px;margin-bottom:12px;">arrow_forward_ios</mat-icon>
+                                                </div>
+                                                <div style="display:flex;flex-direction:column;">
+                                                    <div class = "alertBodyMinor">To</div>
+                                                    <div style="min-width:48.94px;text-align: center;">{{wryyy.newPrice}}</div>
+                                                    <div class = "alertBodyMinor" *ngIf="wryyy.statusChangeTime != 0; else ZeroTwo">{{convertEpochToDate(wryyy.statusChangeTime)}}</div>
+                                                    <ng-template #ZeroTwo>
+                                                        <div class = "alertBodyMinor">{{convertEpochToDate(wryyy.oldPriceTime)}}</div>
+                                                    </ng-template>
+                                                </div>
                                             <mat-divider></mat-divider>
                                         </div>
                                     </div>
@@ -104,9 +136,9 @@
         <mat-tab label="Read">
                 <mat-card style="width:98%">
                 <mat-nav-list role="list">
-                        <mat-list-item role="listitem" style="background-color: #ccceeb;">
+                        <mat-list-item role="listitem" style="background-color: #ccceeb;height: 80px;">
                             <div class="head_container">
-                                <div>
+                                <div style="display:flex; align-items: center;">
                                     <span><mat-icon style = "border-radius: 50%; background:#eeeeee;">import_export</mat-icon></span>
                                     <span>&nbsp; MPN No. &nbsp;</span>
                                     <span>(Brand Name) &nbsp;</span>
@@ -121,12 +153,12 @@
                             </div>
 
                         </mat-list-item>
-                        <mat-list-item role="listitem" *ngFor="let flag of readAlerts" style="opacity: .6;">
+                        <mat-list-item role="listitem" *ngFor="let flag of readAlerts" style="opacity: .6;height: 80px;">
                                 <div class="head_container">
                                         <div>
-                                            <span><mat-icon *ngIf="flag.newPrice - flag.oldPrice > 0; else downward" style="background:green; border-radius: 50%; color:white;">arrow_upward</mat-icon></span>
+                                            <span><mat-icon *ngIf="flag.newPrice - flag.oldPrice > 0; else downward" style="background:green; border-radius: 50%; color:white; font-size:24px;">arrow_upward</mat-icon></span>
                                             <ng-template #downward>
-                                                    <span><mat-icon style="background:red; border-radius: 50%; color:white;">arrow_downward</mat-icon></span>
+                                                    <span><mat-icon style="background:red; border-radius: 50%; color:white; font-size:24px;">arrow_downward</mat-icon></span>
                                             </ng-template>
                                             <span>&nbsp;{{ flag.competitorLink['skuId'] }}&nbsp;</span>
                                             
@@ -135,10 +167,23 @@
                                             <span *ngIf = "flag.competitorLink['competitorId']==12; else BWT">&nbsp;IFixItZone&nbsp;</span>
                                             <ng-template #BWT><span>&nbsp;Buy Wheels Today&nbsp;</span></ng-template>
                                         </div>
-                                        <div>
-                                            <span>{{flag.oldPrice}}</span>
-                                            <mat-icon>arrow_forward_ios</mat-icon>
-                                            <span>{{flag.newPrice}}</span>
+                                        <div style="display:flex;flex-direction:row;flex:0;align-items: center;">
+                                            <div>
+                                                <div class = "alertBodyMinor">From</div>
+                                                <div style="min-width:48.94px;text-align: center;">{{flag.oldPrice}}</div>
+                                                <div class = "alertBodyMinor">{{convertEpochToDate(flag.oldPriceTime)}}</div>
+                                            </div>
+                                            <div style="text-align: center;">
+                                                <mat-icon style="font-size:20px;margin-bottom:12px;">arrow_forward_ios</mat-icon>
+                                            </div>
+                                            <div style="display:flex;flex-direction:column;">
+                                                <div class = "alertBodyMinor">To</div>
+                                                <div style="min-width:48.94px;text-align: center;">{{flag.newPrice}}</div>
+                                                <div class = "alertBodyMinor" *ngIf="flag.statusChangeTime != 0; else ZeroTwo">{{convertEpochToDate(flag.statusChangeTime)}}</div>
+                                                <ng-template #ZeroTwo>
+                                                    <div class = "alertBodyMinor">{{convertEpochToDate(flag.oldPriceTime)}}</div>
+                                                </ng-template>
+                                            </div>
                                             <mat-divider></mat-divider>
                                         </div>
                                     </div>

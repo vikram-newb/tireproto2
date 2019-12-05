@@ -1,0 +1,8 @@
+<p mat-dialog-content> Upload Products Links</p>
+<input type= "file" id="fileUploads" name="profile" accept=".csv">
+<mat-dialog-actions>
+    <div style="display: flex; flex-direction: row; justify-content: flex-end;">
+        <button mat-raised-button mat-dialog-close>Cancel</button>
+        <button (click)="onUpload()" mat-raised-button color="primary" style="margin-right: 15px;;">UPLOAD</button>   
+    </div>
+</mat-dialog-actions>

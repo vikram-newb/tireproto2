@@ -1,8 +1,8 @@
 export interface DashboardBrandProduct {
-    Sku: string,
-    ProductName: string,
-    OurPrice: number,
-    Quantity: string,
+    Sku: string;
+    ProductName: string;
+    OurPrice: number;
+    Quantity: string;
     SellerInfo: [
         {
           SellerId: number,
@@ -11,5 +11,5 @@ export interface DashboardBrandProduct {
           SellerSold: number,
           PriceState: number
         }
-      ] 
+      ];
 }

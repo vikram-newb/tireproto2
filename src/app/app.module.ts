@@ -24,6 +24,10 @@ import { AddProductDiaComponent} from './pages/add-product-dia/add-product-dia.c
 
 import { UploadCsvComponent } from './pages/upload-csv/upload-csv.component';
 import { ExportCsvComponent } from './pages/export-csv/export-csv.component';
+import { DeleteSellerDiaComponent } from './pages/delete-seller-dia/delete-seller-dia.component';
+import { DeleteBrandDiaComponent } from './pages/delete-brand-dia/delete-brand-dia.component';
+import { UploadProductLinkDiaComponent } from './pages/upload-product-link-dia/upload-product-link-dia.component';
+import { DeleteBrandProductDiaComponent } from './pages/delete-brand-product-dia/delete-brand-product-dia.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +41,11 @@ import { ExportCsvComponent } from './pages/export-csv/export-csv.component';
     AddProductDiaComponent,
 
     UploadCsvComponent,
-    ExportCsvComponent
+    ExportCsvComponent,
+    DeleteSellerDiaComponent,
+    DeleteBrandDiaComponent,
+    UploadProductLinkDiaComponent,
+    DeleteBrandProductDiaComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +61,10 @@ import { ExportCsvComponent } from './pages/export-csv/export-csv.component';
   ],
   entryComponents: [Dial1Component,
     AddsellerdialogComponent, AddBrandDiaComponent,
-    AddProductDiaComponent, UploadCsvComponent, ExportCsvComponent
+    AddProductDiaComponent, UploadCsvComponent,
+    ExportCsvComponent, DeleteSellerDiaComponent,
+    DeleteBrandDiaComponent, UploadProductLinkDiaComponent,
+    DeleteBrandProductDiaComponent
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

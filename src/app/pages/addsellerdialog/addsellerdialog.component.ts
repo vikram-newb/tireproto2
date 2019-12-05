@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 // import seller_list from 'src/assets/data/sellers_data.json';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 import { SellersService } from 'src/app/pages/sellers/sellers.service';
 import { Seller } from '../sellers/seller';
@@ -18,7 +19,8 @@ export class AddsellerdialogComponent implements OnInit {
   // public Sellers: any = seller_list;
   constructor(private formBuilder: FormBuilder,
               public addsellerdialogRef: MatDialogRef<AddsellerdialogComponent>,
-              public sellerService: SellersService) { }
+              public sellerService: SellersService,
+              private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -43,6 +45,10 @@ export class AddsellerdialogComponent implements OnInit {
     this.sellerService.addCompetitor(newSeller).subscribe(data => {
       this.closeDialog(data);
     });
+    this._snackBar.open('Seller Added','Successfully',{
+      duration: 2000,
+    })
+    
   }
   closeDialog(data) {
     this.addsellerdialogRef.close(data);

@@ -11,8 +11,8 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./seller-detail.component.css']
 })
 export class SellerDetailComponent implements OnInit {
-  isLoading ="true";
-  tabs = ['Under Process', 'Perfectly Parsed', 'Listing not Found', 'MPN not Found', 'Price not Found', 'Error in Parsing' ];
+  isLoading = 'true';
+  tabs = ['Under Process', 'Perfectly Parsed', 'Price Not Found' , 'MPN not Found', 'Listing not Found', 'Error in Parsing' ];
   selected = new FormControl(0, null);
 
 
@@ -31,13 +31,13 @@ export class SellerDetailComponent implements OnInit {
   ngOnInit() {
      this.id = this.route.snapshot.paramMap.get('id');
      this.sellerService.getCompetitorProduct(this.id).subscribe(data => {
-       this.isLoading = "false"
-       this.dataSource1 = data
+       this.isLoading = 'false';
+       this.dataSource1 = data;
       //  this.dataSource1.forEach( resp => {
       //     resp.status = 4
       //     console.log(resp);
       //  })
-       
+
       });
   }
 

@@ -2,7 +2,7 @@
     <div>
         <form [formGroup]="form">
         <mat-form-field>
-            <mat-select placeholder="Choose another brand" [(value)] = "selected" formControlName= "brand"  required>
+            <mat-select placeholder="Choose another brand" formControlName= "brand"  required>
                 <mat-option *ngFor="let item of brandArray" [value]="item">
                     {{item.name}}</mat-option>
             </mat-select>
@@ -34,7 +34,7 @@
               <td mat-cell *matCellDef="let element" class="includePartition"> {{element.Quantity}} </td>
           </ng-container>
           <ng-container matColumnDef="SellerPrice">
-              <th mat-header-cell *matHeaderCellDef class="includePartition"><div>try it</div>(Price) </th>
+              <th mat-header-cell *matHeaderCellDef class="includePartition"><div>{{ finalName }}</div>(Price) </th>
               <td mat-cell *matCellDef="let element" class="includePartition"> 
                 <ng-container  *ngIf="element.SellerInfo else NA">
                 Rs {{element.SellerInfo[0].SellerPrice}} 
@@ -43,7 +43,7 @@
               </td>
           </ng-container>
           <ng-container matColumnDef="SellerSold">
-              <th mat-header-cell *matHeaderCellDef class="includePartition"><div>try it</div> (#Sold) </th>
+              <th mat-header-cell *matHeaderCellDef class="includePartition"><div>{{ finalName }}</div> (#Sold) </th>
               <td mat-cell *matCellDef="let element" class="includePartition"> 
                   <ng-container  *ngIf="element.SellerInfo else NA">
                   Rs {{element.SellerInfo[0].SellerSold}} 
@@ -56,8 +56,7 @@
           <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
           </table>
           <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center;">
-            <mat-spinner></mat-spinner> 
-            <!-- <mat-progress-spinner color= "primary" mode="intermediate"></mat-progress-spinner> -->
+            <mat-spinner></mat-spinner>
           </div>
         
               
