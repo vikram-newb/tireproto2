@@ -18,6 +18,7 @@ import { ExportCsvComponent } from 'src/app/pages/export-csv/export-csv.componen
 })
 export class DashboardComponent implements OnInit {
   SellerId: number;
+  flag:number;
   numOfSellers: number;
   sellName = [];
   finalName: string;
@@ -27,7 +28,7 @@ export class DashboardComponent implements OnInit {
   sellerArray = [];
   finalArray = [];
   SellId: number;
-  isToggled = false;
+  isToggled = true;
   isLoading = true;
   dashArray: DashboardBrandProduct[];
   // public Thunderer: any = Thunderer_db.RowData;
@@ -55,6 +56,7 @@ export class DashboardComponent implements OnInit {
     this.form.get('brand').valueChanges.subscribe(value => {
       this.getDashBrand(value.id);
     });
+    this.modifyTable();
   }
 
 exportAsCsv() {
@@ -68,13 +70,11 @@ getDashBrand(id: string) {
   this.brandservice.dashBrandProduct(id).subscribe(resp => {
     this.dashArray = resp['RowData'];
     this.sellerArray = this.dashArray.filter(res => res.SellerInfo !== null);
-    this.SellId = this.sellerArray[0].SellerInfo[0].SellerId;
-    this.numOfSellers = this.sellerArray[0].SellerInfo.length;
-    // console.log(this.numOfSellers);
+    this.SellId = this.sellerArray.length > 0 ?  this.sellerArray[0].SellerInfo[0].SellerId : null ;
+    this.numOfSellers = this.SellId != null ? this.sellerArray[0].SellerInfo.length : 0;
     // can use array.find;
     // console.log(this.sellerArray[0].SellerInfo[0].SellerId);
     this.isLoading = false;
-    console.log(this.SellId);
     this.sellerService.getCompetitors().subscribe( result => {
       this.sellName = result.filter(item => {
         if (item.id === this.SellId) {
@@ -91,15 +91,19 @@ getDashBrand(id: string) {
   modifyTable() {
     this.displayedColumns = ['Sku', 'ProductName', 'OurPrice', 'Quantity'];
     this.isToggled = !this.isToggled;
+    this.flag = this.numOfSellers;
     if (this.isToggled) {
-      while(this.numOfSellers != 0){
-        this.displayedColumns.push('SellerPrice','SellerSold');
+      console.log(this.numOfSellers);
+     
+      while (this.flag > 0) {
+        this.displayedColumns.push('SellerPrice', 'SellerSold');
+        this.flag -=1;
       }
       // this.displayedColumns = ['Sku', 'ProductName', 'OurPrice', 'Quantity', 'SellerPrice', 'SellerSold'];
     } else {
-      
       this.displayedColumns = ['Sku', 'ProductName', 'OurPrice', 'Quantity'];
     }
+    
   }
 
 

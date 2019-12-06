@@ -48,7 +48,7 @@ export class SellerListComponent implements OnInit {
     event.preventDefault();
     window.location.assign(seller.url);
   }
-
+  
   openDialog(): void {
     const dialogRef = this.dialog.open(Dial1Component,
        {width: '486px',
@@ -58,6 +58,7 @@ export class SellerListComponent implements OnInit {
       console.log('The dialog was closed');
     });
   }
+
   addsellerDialog() {
     const addsellerdialogRef = this.dialog.open(AddsellerdialogComponent,
       {
@@ -82,9 +83,10 @@ export class SellerListComponent implements OnInit {
     this.sellers = this.sellers.filter(s => s.id !== id);
 
 }
-  uplaodProductLinkDialog() {
+  uplaodProductLinkDialog(id) {
     const uploadProductLinkDiaRef = this.dialog.open(UploadProductLinkDiaComponent, {
-      width: '412.14px'
+      width: '412.14px',
+      data: { id } 
     });
     uploadProductLinkDiaRef.afterClosed().pipe().subscribe(resp => {
       console.log('exit');

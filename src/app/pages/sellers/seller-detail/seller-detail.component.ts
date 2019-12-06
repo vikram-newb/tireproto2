@@ -19,8 +19,8 @@ export class SellerDetailComponent implements OnInit {
   // public Seller: {id: string, name: string}[] = seller_data;
 
 
-  public BuyWheelsToday: {id: string, brand: string, quantity: number, price: number, url: string}[] = BWT_data;
-  public IFixItZone: {id: string, brand: string, quantity: number, price: number, url: string}[] = Ifix_data;
+  // public BuyWheelsToday: {id: string, brand: string, quantity: number, price: number, url: string}[] = BWT_data;
+  // public IFixItZone: {id: string, brand: string, quantity: number, price: number, url: string}[] = Ifix_data;
   id: string ;
   displayedColumns: string[] = ['id', 'brand', 'quantity', 'price', 'url'];
   dataSource1: SellerProduct[];

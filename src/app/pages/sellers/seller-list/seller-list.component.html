@@ -1,9 +1,9 @@
 <div class="btnflex">
     <button (click)='openDialog()' mat-raised-button color="primary" style="margin-right:20px" >ADD SELLER PRODUCT</button>
-    <button (click)='addsellerDialog()' mat-raised-button color="primary" style="margin-right:20px">ADD SELLER</button>
+    <button (click)='addsellerDialog()' mat-raised-button color="primary" style="margin-right:12px">ADD SELLER</button>
 </div>
 
-<mat-card style="margin:auto 23px;width:94%;" >
+<mat-card style="margin:auto 30px;width:94%;" >
     <mat-card-content>
         <mat-nav-list>
             <a mat-list-item *ngFor="let seller of sellers" >
@@ -14,7 +14,7 @@
                     </div>
                 </div>
                     <div style="display:flex;flex-direction: row;flex:0;">
-                        <span><button matTooltip="Upload Product Links" mat-button (click) = "uplaodProductLinkDialog()"><mat-icon style="color:#979797" >playlist_add</mat-icon></button></span>
+                        <span><button matTooltip="Upload Product Links" mat-button (click) = "uplaodProductLinkDialog(seller.id)"><mat-icon style="color:#979797" >playlist_add</mat-icon></button></span>
                         <span><button matTooltip="View Products" [routerLink]="[seller.id]" mat-button><mat-icon style="color:#979797">list</mat-icon></button></span>
                         <!-- <span><button matTooltip="Delete The Seller" mat-button (click) = "deleteSeller(seller)" ><mat-icon >delete_forever</mat-icon></button></span> -->
                         <span><button matTooltip="Delete The Seller" mat-button (click) = "deleteSellerDialog(seller.id)" ><mat-icon style="color:#979797">delete_forever</mat-icon></button></span>

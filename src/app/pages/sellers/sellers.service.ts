@@ -21,6 +21,7 @@ export class SellersService {
     sellersUrl = 'http://18.191.108.43:8000/api/competitors?q-order=asc-name';
     sellersUrl2 = 'http://18.191.108.43:8000/api/competitors';
     sellerProductUrl = 'http://18.191.108.43:8000/api/competitor_links';
+    uploadLink ='http://18.191.108.43:8000/api/competitors/'
     constructor(private http: HttpClient) {}
 
     authEmail = localStorage.getItem('authEmail');
@@ -50,6 +51,10 @@ export class SellersService {
         // tslint:disable-next-line:max-line-length
         const url = this.sellerProductUrl + '?competitorId=' + competitorId + '&q-expand=true&q-order=asc-skuID&auth-email=' + this.authEmail + '&auth-token=' + this.token;
         return this.http.get<SellerProduct[]>(url, httpOptions);
+    }
+    public uploadProductLink(competitorId):Observable<SellerProduct[]> {
+        const url = this.uploadLink + '/' + competitorId + '/upload' + '?auth-email=' + this.authEmail + '&auth-token=' + this.token;
+        return this.http.post<SellerProduct[]>(url, competitorId,httpOptions);
     }
 
 }

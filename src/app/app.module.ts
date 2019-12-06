@@ -28,6 +28,7 @@ import { DeleteSellerDiaComponent } from './pages/delete-seller-dia/delete-selle
 import { DeleteBrandDiaComponent } from './pages/delete-brand-dia/delete-brand-dia.component';
 import { UploadProductLinkDiaComponent } from './pages/upload-product-link-dia/upload-product-link-dia.component';
 import { DeleteBrandProductDiaComponent } from './pages/delete-brand-product-dia/delete-brand-product-dia.component';
+import { SpinnerLoaderModule } from '@bit/joshk.ng-spinners.spinner-loader';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +59,7 @@ import { DeleteBrandProductDiaComponent } from './pages/delete-brand-product-dia
     FlexLayoutModule,
     MatFormFieldModule,
     MatDialogModule,
+    SpinnerLoaderModule
   ],
   entryComponents: [Dial1Component,
     AddsellerdialogComponent, AddBrandDiaComponent,

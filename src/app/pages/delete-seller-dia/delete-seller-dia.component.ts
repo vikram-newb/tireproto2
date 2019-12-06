@@ -12,7 +12,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   styleUrls: ['./delete-seller-dia.component.css']
 })
 export class DeleteSellerDiaComponent implements OnInit {
-  onAdd = new EventEmitter();
+  
 
   sellers: Seller[];
 
